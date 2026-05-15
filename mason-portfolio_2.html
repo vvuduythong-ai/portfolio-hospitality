@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mason — Vu Duy Thong · Growth Marketing & Vibe Coding</title>
+<meta name="description" content="Growth Marketing + Vibe Coding for F&B & Hospitality.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff; --off: #faf8f5; --ink: #1a1209; --ink2: #4a3728;
+  --ink3: #9a8070; --br: #6B3F2A; --bl: #f5ede7; --bm: #c4896a;
+  --line: #ede5de; --green: #3d7a52;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--ink); font-family: 'Be Vietnam Pro', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; overflow-x: hidden; cursor: none; }
+.cur { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+.cur-d { width: 8px; height: 8px; background: var(--br); border-radius: 50%; position: absolute; transform: translate(-50%,-50%); }
+.cur-r { width: 36px; height: 36px; border: 1.5px solid var(--br); border-radius: 50%; position: absolute; transform: translate(-50%,-50%); transition: all .18s ease; opacity: .5; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; background: rgba(255,255,255,.93); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.nl { font-size: 17px; font-weight: 800; letter-spacing: -.02em; color: var(--ink); }
+.nl span { color: var(--br); }
+.nr { display: flex; align-items: center; gap: 28px; }
+.nk { font-size: 12px; font-weight: 500; color: var(--ink3); text-decoration: none; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+.nk:hover { color: var(--br); }
+
+.lang-tog { display: inline-flex; align-items: center; gap: 0; background: var(--off); border: 1px solid var(--line); border-radius: 100px; padding: 3px; font-family: 'DM Mono', monospace; cursor: none; }
+.lang-tog button { border: none; background: transparent; padding: 4px 12px; font-size: 10.5px; font-weight: 700; color: var(--ink3); border-radius: 100px; letter-spacing: .06em; cursor: none; transition: all .22s; font-family: inherit; }
+.lang-tog button.on { background: var(--br); color: var(--white); box-shadow: 0 2px 8px rgba(107,63,42,.25); }
+.lang-tog button:not(.on):hover { color: var(--br); }
+
+.demo-banner { position: fixed; top: 60px; left: 0; right: 0; z-index: 90; background: linear-gradient(90deg, #fef6e7, #fdf1d8); border-bottom: 1px solid #f3d488; padding: 7px 48px; font-family: 'DM Mono', monospace; font-size: 10.5px; color: #7a4a08; text-align: center; letter-spacing: .04em; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.demo-banner-dot { width: 6px; height: 6px; border-radius: 50%; background: #d97706; flex-shrink: 0; }
+.demo-banner strong { font-weight: 700; color: #5a3505; }
+
+#hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 60px 48px 72px; position: relative; overflow: hidden; }
+.hbg { position: absolute; top: 50%; left: -20px; transform: translateY(-50%); font-size: clamp(110px,17vw,200px); font-weight: 800; color: transparent; -webkit-text-stroke: 1px var(--line); white-space: nowrap; pointer-events: none; user-select: none; z-index: 0; opacity: .5; letter-spacing: -.04em; }
+.hc { position: relative; z-index: 1; max-width: 900px; }
+.hbadge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--bm); background: var(--bl); border-radius: 100px; padding: 6px 16px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--br); margin-bottom: 32px; opacity: 0; animation: fu .6s .2s forwards; }
+.bd { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pu 2s ease-in-out infinite; }
+@keyframes pu { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+.hpre { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--ink3); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; opacity: 0; animation: fu .6s .3s forwards; }
+.hn { font-size: clamp(52px,9vw,96px); font-weight: 800; line-height: .95; letter-spacing: -.03em; color: var(--ink); opacity: 0; animation: fu .7s .4s forwards; }
+.hn em { font-style: normal; color: var(--br); }
+.hn .alias { display: block; font-size: clamp(13px,1.8vw,18px); font-weight: 400; color: var(--ink3); letter-spacing: .02em; margin-top: 10px; font-family: 'DM Mono', monospace; }
+.htag { margin-top: 28px; font-size: clamp(14px,1.8vw,17px); font-weight: 300; color: var(--ink2); line-height: 1.75; max-width: 560px; opacity: 0; animation: fu .7s .6s forwards; }
+.htag strong { color: var(--ink); font-weight: 700; }
+.hbot { margin-top: 48px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; opacity: 0; animation: fu .6s .8s forwards; }
+.hpills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { font-size: 12px; font-weight: 400; color: var(--ink2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 14px; background: var(--off); }
+.sh { display: flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink3); letter-spacing: .1em; text-transform: uppercase; }
+.sline { width: 40px; height: 1px; background: var(--bm); position: relative; overflow: hidden; }
+.sline::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--br); animation: sc 2s ease-in-out infinite; }
+@keyframes sc { 0%{left:-100%} 100%{left:100%} }
+@keyframes fu { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+.hwrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: end; width: 100%; position: relative; z-index: 1; }
+.hvis { position: relative; width: 100%; aspect-ratio: 4 / 3; opacity: 0; animation: fu .8s .5s forwards; }
+.hvis-frame { position: absolute; inset: 0; border-radius: 16px; overflow: hidden; background: var(--off); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(107,63,42,.22), 0 8px 24px -12px rgba(26,18,9,.08); }
+.hvis-bar { position: absolute; top: 0; left: 0; right: 0; height: 28px; background: linear-gradient(180deg, var(--white), var(--off)); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 6px; padding: 0 12px; z-index: 4; }
+.hvis-dot { width: 8px; height: 8px; border-radius: 50%; }
+.hvis-dot:nth-child(1) { background: #ff5f56; } .hvis-dot:nth-child(2) { background: #ffbd2e; } .hvis-dot:nth-child(3) { background: #27c93f; }
+.hvis-url { flex: 1; text-align: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink3); padding: 3px 14px; background: var(--white); border: 1px solid var(--line); border-radius: 4px; margin-left: 8px; max-width: 280px; }
+.hvis-slide { position: absolute; top: 28px; left: 0; right: 0; bottom: 0; padding: 18px 22px; opacity: 0; transition: opacity .8s ease; display: flex; flex-direction: column; gap: 12px; }
+.hvis-slide.on { opacity: 1; }
+.hvis-tag { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500; color: var(--br); letter-spacing: .12em; text-transform: uppercase; }
+.hvis-h { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
+.hvis-sub { font-size: 11px; color: var(--ink3); font-weight: 300; margin-top: -6px; }
+
+.kol-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; flex: 1; min-height: 0; }
+.kol-row { display: grid; grid-template-columns: 28px 1fr auto auto; gap: 10px; align-items: center; padding: 9px 12px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.kol-av { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--bm), var(--br)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 10px; }
+.kol-name { font-size: 11px; font-weight: 700; color: var(--ink); }
+.kol-meta { font-size: 9px; color: var(--ink3); font-family: 'DM Mono', monospace; }
+.kol-bar { width: 56px; height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; position: relative; }
+.kol-bar-fill { height: 100%; background: var(--br); border-radius: 3px; }
+.kol-roas { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; color: var(--br); min-width: 38px; text-align: right; }
+
+.ads-metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.ads-stat { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; }
+.ads-stat-l { font-size: 8.5px; font-family: 'DM Mono', monospace; color: var(--ink3); letter-spacing: .08em; text-transform: uppercase; }
+.ads-stat-v { font-size: 16px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; margin-top: 2px; }
+.ads-stat-d { font-size: 9px; font-weight: 700; color: var(--green); margin-top: 1px; }
+.ads-stat-d.dn { color: #c0392b; }
+.ads-chart { flex: 1; background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; min-height: 0; }
+.ads-chart-h { display: flex; justify-content: space-between; align-items: center; }
+.ads-chart-t { font-size: 9.5px; font-weight: 700; color: var(--ink); }
+.ads-chart-l { font-size: 8.5px; font-family: 'DM Mono', monospace; color: var(--ink3); }
+.ads-svg { flex: 1; width: 100%; min-height: 0; }
+.ads-alert { background: linear-gradient(135deg, #fef6e7, #fdf1d8); border: 1px solid #f3d488; border-radius: 8px; padding: 7px 10px; display: flex; gap: 8px; align-items: center; }
+.ads-alert-i { width: 16px; height: 16px; background: #d97706; border-radius: 50%; color: white; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ads-alert-t { font-size: 10px; color: var(--ink); font-weight: 500; line-height: 1.3; }
+
+.hid-top { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.hid-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.hid-card-l { font-size: 9px; font-family: 'DM Mono', monospace; color: var(--ink3); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.hid-card-v { font-size: 18px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+.hid-card-v em { font-style: normal; color: var(--br); }
+.hid-card-s { font-size: 9px; color: var(--green); font-weight: 700; margin-top: 1px; }
+.hid-countries { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.hid-countries-h { display: flex; justify-content: space-between; font-size: 9.5px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.hid-countries-h span:last-child { font-family: 'DM Mono', monospace; color: var(--ink3); font-weight: 500; }
+.hid-c-row { display: grid; grid-template-columns: 14px 1fr auto auto; gap: 8px; align-items: center; font-size: 10px; }
+.hid-flag { width: 14px; height: 10px; border-radius: 2px; background: var(--bm); }
+.hid-c-name { color: var(--ink); font-weight: 500; }
+.hid-c-bar { width: 50px; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.hid-c-bar-fill { height: 100%; background: linear-gradient(90deg, var(--bm), var(--br)); }
+.hid-c-val { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--br); font-weight: 700; min-width: 26px; text-align: right; }
+.hid-ai { margin-top: auto; background: linear-gradient(135deg, var(--bl), #fff); border: 1px solid var(--bm); border-radius: 8px; padding: 8px 11px; display: flex; gap: 8px; align-items: flex-start; }
+.hid-ai-i { width: 20px; height: 20px; border-radius: 50%; background: var(--br); color: white; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.hid-ai-t { font-size: 10px; color: var(--ink); line-height: 1.4; }
+.hid-ai-t strong { color: var(--br); font-weight: 700; }
+
+.hvis-dots { position: absolute; bottom: -28px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+.hvis-d { width: 22px; height: 3px; background: var(--line); border-radius: 2px; cursor: none; border: none; padding: 0; transition: background .3s; }
+.hvis-d.on { background: var(--br); }
+
+.pill { display: inline-flex; align-items: center; gap: 7px; }
+.pico-svg { width: 14px; height: 14px; flex-shrink: 0; }
+.pico-svg path, .pico-svg circle, .pico-svg rect { stroke: var(--br); }
+
+.sec { padding: 88px 48px; border-top: 1px solid var(--line); }
+.si { max-width: 1100px; margin: 0 auto; }
+.ey { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--ink3); letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 44px; }
+.ey-n { color: var(--br); }
+.ey::after { content: ''; flex: 1; height: 1px; background: var(--line); max-width: 60px; }
+#pain { background: var(--off); }
+.ph { font-size: clamp(28px,4.5vw,52px); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 16px; max-width: 700px; }
+.ph em { font-style: normal; color: var(--br); }
+.pi { font-size: 15px; font-weight: 300; color: var(--ink2); max-width: 640px; line-height: 1.8; margin-bottom: 48px; }
+.pgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.pc { background: var(--white); padding: 28px 24px; transition: background .2s; }
+.pc:hover { background: var(--bl); }
+.pico { font-size: 26px; margin-bottom: 14px; display: block; }
+.ptit { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.pbo { font-size: 13px; font-weight: 300; color: var(--ink3); line-height: 1.7; }
+.ssplit { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; align-items: start; }
+.sbig { font-size: clamp(24px,3.5vw,38px); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; position: sticky; top: 80px; }
+.sbig em { font-style: normal; color: var(--br); }
+.sbody { font-size: 14.5px; font-weight: 300; color: var(--ink2); line-height: 1.85; }
+.sbody p + p { margin-top: 18px; }
+.sbody strong { color: var(--ink); font-weight: 700; }
+.sdiv { width: 40px; height: 3px; background: var(--br); margin: 28px 0; border-radius: 2px; }
+.slist { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.sitem { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--off); transition: border-color .2s, transform .2s; }
+.sitem:hover { border-color: var(--bm); transform: translateX(4px); }
+.schk { width: 22px; height: 22px; border-radius: 50%; background: var(--br); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; color: white; margin-top: 1px; }
+.stxt { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.65; }
+.stxt strong { color: var(--ink); font-weight: 700; }
+#platforms { background: var(--off); }
+.tabs { display: flex; gap: 4px; background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 4px; width: fit-content; margin-bottom: 48px; flex-wrap: wrap; }
+.tab { padding: 10px 22px; border-radius: 7px; cursor: none; font-size: 13px; font-weight: 700; border: none; background: transparent; color: var(--ink3); transition: all .2s; }
+.tab.on { background: var(--br); color: var(--white); box-shadow: 0 2px 12px rgba(107,63,42,.22); }
+.pan { display: none; }
+.pan.on { display: block; }
+.playout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+.po { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: var(--br); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.ptitle { font-size: clamp(20px,3vw,32px); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 18px; }
+.pbody { font-size: 13.5px; font-weight: 300; color: var(--ink2); line-height: 1.8; }
+.pbody p + p { margin-top: 14px; }
+.pbody strong { color: var(--ink); font-weight: 700; }
+.psteps { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-top: 22px; }
+.psteps-t { font-size: 10px; font-family: 'DM Mono', monospace; font-weight: 500; color: var(--ink3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+.pstep { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 300; color: var(--ink3); line-height: 1.5; }
+.pstep:last-child { border: none; }
+.psn { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: var(--bm); min-width: 18px; }
+.xout { text-decoration: line-through; opacity: .45; }
+.fcards { display: flex; flex-direction: column; gap: 10px; }
+.fc { padding: 16px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); transition: border-color .2s, box-shadow .2s; }
+.fc:hover { border-color: var(--bm); box-shadow: 0 4px 20px rgba(107,63,42,.07); }
+.fct { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: var(--br); letter-spacing: .06em; margin-bottom: 6px; }
+.fch { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: var(--ink); }
+.fcb { font-size: 12px; font-weight: 300; color: var(--ink3); line-height: 1.6; }
+.srow { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 20px; }
+.sbox { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 14px; text-align: center; }
+.snum { font-size: 26px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+.snum em { font-style: normal; color: var(--br); }
+.slbl { font-size: 11px; font-weight: 300; color: var(--ink3); margin-top: 4px; line-height: 1.4; }
+
+/* === CSS-BUILT PLATFORM MOCKUPS === */
+.mocks { margin-top: 60px; }
+.mocks-h { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px dashed var(--line); }
+.mocks-h-l { display: flex; align-items: center; gap: 10px; }
+.mocks-tag { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: var(--br); letter-spacing: .12em; text-transform: uppercase; }
+.mocks-title { font-size: 16px; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
+.mocks-note { font-family: 'DM Mono', monospace; font-size: 10px; color: #7a4a08; background: linear-gradient(135deg, #fef6e7, #fdf1d8); border: 1px solid #f3d488; border-radius: 6px; padding: 5px 11px; display: inline-flex; align-items: center; gap: 7px; }
+.mocks-note-dot { width: 6px; height: 6px; border-radius: 50%; background: #d97706; }
+.mocks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mock { border-radius: 14px; overflow: hidden; background: var(--white); border: 1px solid var(--line); box-shadow: 0 14px 38px -18px rgba(107,63,42,.18), 0 4px 14px -8px rgba(26,18,9,.06); transition: transform .25s, box-shadow .25s, border-color .25s; display: flex; flex-direction: column; }
+.mock:hover { transform: translateY(-3px); border-color: var(--bm); box-shadow: 0 24px 52px -16px rgba(107,63,42,.22); }
+.mock-bar { height: 32px; background: linear-gradient(180deg, var(--white), var(--off)); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 6px; padding: 0 12px; flex-shrink: 0; }
+.mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+.mock-dot:nth-child(1) { background: #ff5f56; } .mock-dot:nth-child(2) { background: #ffbd2e; } .mock-dot:nth-child(3) { background: #27c93f; }
+.mock-url { flex: 1; text-align: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink3); padding: 3px 14px; background: var(--white); border: 1px solid var(--line); border-radius: 4px; margin-left: 8px; max-width: 320px; }
+.mock-body { padding: 18px 20px; background: var(--off); flex: 1; display: flex; flex-direction: column; gap: 11px; min-height: 360px; }
+.mock-tag { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500; color: var(--br); letter-spacing: .12em; text-transform: uppercase; }
+.mock-h { font-size: 16px; font-weight: 800; color: var(--ink); letter-spacing: -.01em; line-height: 1.2; }
+.mock-sub { font-size: 11px; color: var(--ink3); font-weight: 300; }
+
+/* KOL Discovery */
+.md-search-row { display: flex; gap: 6px; }
+.md-search-input { flex: 1; background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 7px 11px; font-size: 11px; color: var(--ink); font-family: inherit; }
+.md-search-btn { background: var(--green); color: white; border: none; border-radius: 6px; padding: 0 16px; font-size: 10px; font-weight: 700; font-family: inherit; letter-spacing: .04em; }
+.md-checks { display: flex; gap: 14px; font-size: 10px; color: var(--ink2); flex-wrap: wrap; align-items: center; }
+.md-check { display: flex; align-items: center; gap: 5px; }
+.md-check-box { width: 11px; height: 11px; border-radius: 3px; background: var(--green); display: flex; align-items: center; justify-content: center; color: white; font-size: 8px; font-weight: 800; }
+.md-filters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.md-filter { background: var(--white); border: 1px solid var(--line); border-radius: 5px; padding: 5px 8px; }
+.md-filter-l { font-size: 7.5px; color: var(--ink3); font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; }
+.md-filter-v { font-size: 10px; color: var(--ink2); margin-top: 1px; }
+.md-section { font-size: 11px; font-weight: 700; color: var(--ink); padding-top: 2px; display: flex; align-items: center; gap: 8px; }
+.md-section-pill { background: var(--bl); color: var(--br); padding: 1px 7px; border-radius: 10px; font-size: 8px; font-family: 'DM Mono', monospace; font-weight: 500; }
+.md-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+.md-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; }
+.md-card-h { display: flex; gap: 7px; align-items: center; }
+.md-card-av { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--bm), var(--br)); display: flex; align-items: center; justify-content: center; color: white; font-size: 8.5px; font-weight: 800; flex-shrink: 0; }
+.md-card-n { font-size: 10px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+.md-card-h2 { font-size: 8.5px; color: var(--ink3); font-family: 'DM Mono', monospace; }
+.md-card-stats { display: flex; gap: 6px; margin-top: 6px; font-size: 8.5px; color: var(--ink3); font-family: 'DM Mono', monospace; align-items: center; flex-wrap: wrap; }
+.md-card-score { background: #e8f5ec; color: var(--green); padding: 1px 5px; border-radius: 8px; font-weight: 600; }
+
+/* KOL Insights */
+.mi-row1 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.mi-row2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.mi-stat { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; }
+.mi-l { font-size: 8px; font-family: 'DM Mono', monospace; color: var(--ink3); letter-spacing: .06em; text-transform: uppercase; }
+.mi-v { font-size: 14px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; margin-top: 2px; line-height: 1; }
+.mi-d { font-size: 8.5px; color: var(--green); font-weight: 700; margin-top: 2px; }
+.mi-d.dn { color: #c0392b; }
+.mi-chart-box { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.mi-chart-h { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: var(--ink); }
+.mi-chart-h span:last-child { font-family: 'DM Mono', monospace; color: var(--ink3); font-weight: 500; font-size: 8.5px; }
+.mi-chart-tabs { display: flex; gap: 4px; }
+.mi-chart-tab { font-size: 8.5px; padding: 2px 8px; border-radius: 10px; background: var(--off); color: var(--ink3); font-family: 'DM Mono', monospace; }
+.mi-chart-tab.on { background: var(--br); color: white; font-weight: 600; }
+.mi-svg { width: 100%; height: 110px; flex: 1; }
+
+/* Affiliate */
+.ma-nav { display: flex; gap: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); align-items: center; }
+.ma-logo { font-size: 13px; font-weight: 800; color: var(--br); letter-spacing: -.01em; }
+.ma-nav-k { font-size: 10px; color: var(--ink2); font-weight: 500; }
+.ma-nav-k.on { color: var(--ink); }
+.ma-nav-right { margin-left: auto; font-size: 9.5px; color: var(--ink3); font-family: 'DM Mono', monospace; }
+.ma-greet { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1.1; }
+.ma-sub { font-size: 10.5px; color: var(--ink3); line-height: 1.4; }
+.ma-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.ma-card { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 12px 13px; }
+.ma-l { font-size: 8.5px; font-family: 'DM Mono', monospace; color: var(--ink3); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.ma-v { font-size: 18px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
+.ma-v span { font-size: 10px; color: var(--ink3); font-weight: 500; margin-left: 4px; }
+.ma-bar { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: 8px; }
+.ma-bar-fill { height: 100%; background: var(--br); }
+.ma-s { font-size: 9px; color: var(--ink3); margin-top: 4px; }
+.ma-panel { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; }
+.ma-panel-h { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.ma-row { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink2); padding: 5px 0; border-top: 1px solid var(--line); }
+.ma-row:first-of-type { border-top: none; padding-top: 2px; }
+.ma-row span:last-child { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--br); }
+
+/* Ads Performance */
+.ap-metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.ap-stat { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px; }
+.ap-l { font-size: 7.5px; font-family: 'DM Mono', monospace; color: var(--ink3); letter-spacing: .04em; text-transform: uppercase; }
+.ap-v { font-size: 13px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; margin-top: 1px; line-height: 1; }
+.ap-d { font-size: 8px; color: var(--green); font-weight: 700; margin-top: 2px; font-family: 'DM Mono', monospace; }
+.ap-d.dn { color: #c0392b; }
+.ap-pies { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: 1; }
+.ap-pie { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 10px 11px; display: flex; flex-direction: column; gap: 8px; }
+.ap-pie-t { font-size: 10px; font-weight: 700; color: var(--ink); }
+.ap-pie-content { display: flex; gap: 10px; align-items: center; }
+.ap-pie-svg { width: 72px; height: 72px; flex-shrink: 0; }
+.ap-pie-legend { display: flex; flex-direction: column; gap: 3px; font-size: 8.5px; color: var(--ink2); font-family: 'DM Mono', monospace; flex: 1; min-width: 0; }
+.ap-pie-legend > div { display: flex; align-items: center; gap: 5px; }
+.ap-pie-legend i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.ap-pie-legend span { margin-left: auto; color: var(--ink3); }
+
+/* Tactics */
+.mt-toolbar { display: flex; align-items: center; gap: 8px; }
+.mt-toolbar-r { margin-left: auto; background: #4361e8; color: white; padding: 4px 10px; border-radius: 5px; font-size: 9px; font-weight: 600; }
+.mt-table { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; flex: 1; }
+.mt-thead, .mt-row { display: grid; grid-template-columns: 1.8fr 1.1fr .8fr .4fr; padding: 7px 11px; align-items: center; }
+.mt-thead { background: var(--off); font-size: 8px; font-family: 'DM Mono', monospace; color: var(--ink3); text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px solid var(--line); }
+.mt-row { font-size: 9.5px; border-bottom: 1px solid var(--line); }
+.mt-row:last-child { border-bottom: none; }
+.mt-pill { display: inline-block; background: var(--bl); color: var(--br); font-family: 'DM Mono', monospace; font-size: 7px; padding: 1px 5px; border-radius: 3px; margin-right: 5px; letter-spacing: .08em; font-weight: 600; }
+.mt-name { color: var(--ink); font-weight: 500; font-size: 9px; line-height: 1.3; }
+.mt-cell { font-size: 8.5px; color: var(--ink3); line-height: 1.3; }
+.mt-toggle { width: 22px; height: 12px; background: var(--line); border-radius: 8px; position: relative; justify-self: end; }
+.mt-toggle.on { background: var(--green); }
+.mt-toggle::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: white; position: absolute; top: 2px; left: 2px; transition: left .2s; }
+.mt-toggle.on::after { left: 12px; }
+
+/* Activity Log */
+.mal-tabs { display: flex; gap: 5px; flex-wrap: wrap; }
+.mal-tab { background: var(--white); border: 1px solid var(--line); border-radius: 11px; padding: 3px 8px; font-size: 8.5px; color: var(--ink2); }
+.mal-tab.on { background: var(--bl); border-color: var(--bm); color: var(--br); font-weight: 600; }
+.mal-chart-box { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px; }
+.mal-chart-h { font-size: 8px; font-family: 'DM Mono', monospace; color: var(--ink3); letter-spacing: .06em; text-transform: uppercase; }
+.mal-svg { width: 100%; height: 40px; display: block; }
+.mal-entries { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+.mal-entry { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; }
+.mal-badges { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 5px; align-items: center; }
+.mal-badge { font-family: 'DM Mono', monospace; font-size: 7.5px; padding: 1px 5px; border-radius: 3px; letter-spacing: .04em; font-weight: 600; text-transform: uppercase; }
+.mal-badge.auto { background: #fdf1d8; color: #7a4a08; }
+.mal-badge.cre { background: #dfeefb; color: #1e5b8e; }
+.mal-badge.loc { background: var(--off); color: var(--ink2); border: 1px solid var(--line); }
+.mal-badge.meta { background: #e8eafe; color: #4a4e9e; }
+.mal-time { margin-left: auto; font-size: 8px; color: var(--ink3); font-family: 'DM Mono', monospace; }
+.mal-t { font-size: 10.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+.mal-meta { font-size: 8.5px; color: var(--ink3); font-family: 'DM Mono', monospace; line-height: 1.4; word-break: break-all; }
+
+/* AI Analyst Chat */
+.mac-header { background: linear-gradient(135deg, #6d5dfc, #4a3aab); color: white; padding: 10px 14px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin: -18px -20px 6px; }
+.mac-header-i { width: 18px; height: 18px; border-radius: 4px; background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; }
+.mac-header-r { margin-left: auto; font-size: 9px; opacity: .7; font-weight: 400; font-family: 'DM Mono', monospace; }
+.mac-chat { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+.mac-bubble { padding: 8px 11px; border-radius: 10px; font-size: 9.5px; line-height: 1.55; max-width: 88%; }
+.mac-bubble.user { background: linear-gradient(135deg, #6d5dfc, #4a3aab); color: white; align-self: flex-end; border-bottom-right-radius: 3px; }
+.mac-bubble.bot { background: var(--white); color: var(--ink2); border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 3px; }
+.mac-bubble.bot strong { color: var(--ink); font-weight: 700; }
+.mac-bubble.bot code { font-family: 'DM Mono', monospace; background: var(--off); padding: 1px 4px; border-radius: 3px; font-size: 9px; color: var(--br); }
+.mac-input { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 10px; color: var(--ink3); font-style: italic; }
+
+/* HiD Daily Brief */
+.hd-tabs { display: flex; gap: 0; background: var(--ink); padding: 4px 10px; margin: -18px -20px 4px; overflow-x: auto; }
+.hd-tab { padding: 5px 10px; font-size: 8.5px; color: rgba(255,255,255,.5); font-weight: 600; white-space: nowrap; font-family: 'DM Mono', monospace; letter-spacing: .04em; }
+.hd-tab.on { color: white; border-bottom: 2px solid var(--bm); }
+.hd-chart-box { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.hd-chart-h { font-size: 10px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.hd-legend { display: flex; gap: 9px; font-size: 8px; color: var(--ink3); font-family: 'DM Mono', monospace; margin-bottom: 4px; flex-wrap: wrap; }
+.hd-legend > span { display: flex; align-items: center; gap: 4px; }
+.hd-legend i { display: inline-block; width: 9px; height: 2px; border-radius: 1px; }
+.hd-svg { width: 100%; height: 85px; display: block; }
+.hd-table { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.hd-thead, .hd-row { display: grid; grid-template-columns: .8fr 1.4fr .7fr 1fr .8fr .8fr; padding: 6px 11px; align-items: center; }
+.hd-thead { background: var(--off); font-size: 7.5px; font-family: 'DM Mono', monospace; color: var(--ink3); text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid var(--line); }
+.hd-row { font-size: 9px; color: var(--ink2); border-bottom: 1px solid var(--line); }
+.hd-row:last-child { border-bottom: none; }
+.hd-row .g { color: var(--green); font-weight: 700; font-family: 'DM Mono', monospace; }
+.hd-row .r { color: #c0392b; font-weight: 700; font-family: 'DM Mono', monospace; }
+
+/* HiD Channel Mix Heatmap */
+.hc-toolbar { display: flex; gap: 4px; }
+.hc-toolbar > span { font-size: 8.5px; padding: 3px 8px; border-radius: 5px; background: var(--white); border: 1px solid var(--line); color: var(--ink3); font-family: 'DM Mono', monospace; }
+.hc-toolbar > span.on { background: var(--br); color: white; border-color: var(--br); }
+.hc-table { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; flex: 1; }
+.hc-thead, .hc-row { display: grid; grid-template-columns: 1.4fr repeat(6, 1fr); }
+.hc-thead { background: var(--ink); color: rgba(255,255,255,.75); font-family: 'DM Mono', monospace; font-size: 7.5px; text-transform: uppercase; letter-spacing: .04em; padding: 6px 0; }
+.hc-thead > * { padding: 0 8px; text-align: center; }
+.hc-thead > :first-child { text-align: left; }
+.hc-row > * { padding: 5px 0; font-size: 8.5px; text-align: center; font-family: 'DM Mono', monospace; font-weight: 600; border-top: 1px solid var(--line); }
+.hc-ch { color: var(--ink) !important; font-weight: 700 !important; font-family: inherit !important; text-align: left !important; padding: 5px 10px !important; font-size: 9px !important; }
+
+/* HiD Market */
+.hco-table { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.hco-thead, .hco-row { display: grid; grid-template-columns: .4fr 1.8fr .7fr 1fr 1fr; padding: 7px 12px; align-items: center; }
+.hco-thead { background: var(--off); font-size: 7.5px; font-family: 'DM Mono', monospace; color: var(--ink3); text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px solid var(--line); }
+.hco-row { font-size: 10px; color: var(--ink); border-bottom: 1px solid var(--line); }
+.hco-row:last-child { border-bottom: none; }
+.hco-n { color: var(--ink3); font-family: 'DM Mono', monospace; font-weight: 700; }
+.hco-c { font-weight: 600; }
+.hco-pill { font-size: 8px; font-family: 'DM Mono', monospace; padding: 2px 7px; border-radius: 10px; font-weight: 600; text-align: center; }
+.hco-pill.ok { background: #e8f5ec; color: var(--green); }
+.hco-pill.bad { background: #fef0f0; color: #c0392b; }
+.hco-panel { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 11px 13px; }
+.hco-panel-h { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: baseline; }
+.hco-panel-h span { font-family: 'DM Mono', monospace; font-size: 8.5px; color: var(--br); }
+.hco-segs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+.hco-seg { font-size: 9px; color: var(--ink2); padding: 3px 0; display: flex; justify-content: space-between; gap: 6px; align-items: center; }
+.hco-seg-l { flex: 1; }
+.hco-seg-v { font-family: 'DM Mono', monospace; color: var(--br); font-weight: 700; }
+.hco-seg-pct { font-family: 'DM Mono', monospace; color: var(--ink3); font-size: 8px; }
+
+/* HiD Assistant */
+.hai-header { background: var(--ink); color: white; padding: 10px 14px; margin: -18px -20px 0; display: flex; gap: 9px; align-items: flex-start; }
+.hai-header-i { width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(135deg, var(--bm), var(--br)); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; flex-shrink: 0; }
+.hai-header-t { font-size: 11px; font-weight: 700; line-height: 1.1; }
+.hai-header-s { font-size: 8.5px; opacity: .55; font-weight: 400; margin-top: 2px; font-family: 'DM Mono', monospace; }
+.hai-warn { background: linear-gradient(135deg, var(--bl), #fff); color: var(--br); font-size: 9px; padding: 7px 11px; border-radius: 5px; line-height: 1.4; border: 1px solid var(--bm); }
+.hai-warn strong { font-weight: 700; }
+.hai-chat { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+.hai-user { background: #6d5dfc; color: white; padding: 8px 11px; border-radius: 10px; font-size: 9.5px; line-height: 1.5; align-self: flex-end; max-width: 78%; border-bottom-right-radius: 3px; }
+.hai-bot { background: var(--white); border: 1px solid var(--line); padding: 9px 11px; border-radius: 10px; font-size: 9.5px; line-height: 1.55; color: var(--ink2); border-bottom-left-radius: 3px; max-width: 92%; }
+.hai-bot strong { color: var(--ink); font-weight: 700; }
+.hai-bot ul { padding-left: 14px; margin-top: 4px; }
+.hai-bot li { margin-top: 2px; }
+.hai-input { background: var(--white); border: 1.5px solid #6d5dfc; border-radius: 8px; padding: 8px 12px; font-size: 10px; color: var(--ink3); font-style: italic; }
+
+#results { background: var(--ink); }
+#results .ey { color: rgba(255,255,255,.35); }
+#results .ey-n { color: rgba(255,255,255,.35); }
+#results .ey::after { background: rgba(255,255,255,.1); }
+#results .ph { color: var(--white); max-width: 760px; }
+#results .ph em { color: var(--bm); }
+#results .pi { color: rgba(255,255,255,.55); }
+.rgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 8px; }
+.rcard { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 28px 24px; transition: border-color .25s, background .25s; display: flex; flex-direction: column; }
+.rcard:hover { border-color: var(--bm); background: rgba(255,255,255,.05); }
+.rcard-tag { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: var(--bm); letter-spacing: .1em; margin-bottom: 22px; text-transform: uppercase; }
+.rcard-big { font-size: clamp(48px,7vw,72px); font-weight: 800; color: var(--white); line-height: 1; letter-spacing: -.04em; margin-bottom: 10px; }
+.rcard-big em { font-style: normal; color: var(--bm); }
+.rcard-lbl { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.6); margin-bottom: 24px; line-height: 1.5; min-height: 40px; }
+.rcard-shift { padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); display: flex; flex-direction: column; gap: 14px; margin-top: auto; }
+.rcard-row { display: flex; gap: 10px; align-items: flex-start; }
+.rcard-from, .rcard-to { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; min-width: 64px; text-align: center; flex-shrink: 0; line-height: 1.2; }
+.rcard-from { background: rgba(255,255,255,.06); color: rgba(255,255,255,.42); }
+.rcard-to { background: var(--bm); color: var(--ink); }
+.rcard-from-t { font-size: 12.5px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.6; }
+.rcard-to-t { font-size: 12.5px; font-weight: 400; color: rgba(255,255,255,.88); line-height: 1.6; }
+.rcard-to-t strong { color: var(--white); font-weight: 700; }
+
+#tools { background: var(--off); }
+.tintro { font-size: 15px; font-weight: 300; color: var(--ink2); max-width: 640px; line-height: 1.8; margin-bottom: 48px; }
+.tintro strong { color: var(--ink); font-weight: 700; }
+.tgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.tcard { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 18px 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; transition: border-color .25s, transform .25s, box-shadow .25s; }
+.tcard:hover { border-color: var(--bm); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(107,63,42,.09); }
+.tlogo-box { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
+.tlogo-box svg { width: 26px; height: 26px; }
+.tcat { font-family: 'DM Mono', monospace; font-size: 8.5px; color: var(--ink3); letter-spacing: .08em; text-transform: uppercase; }
+.tnm { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.2; letter-spacing: -.01em; }
+
+#certs { background: var(--white); }
+.certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 8px; }
+.certcard { display: flex; gap: 18px; align-items: center; padding: 22px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--off); text-decoration: none; color: inherit; transition: border-color .25s, transform .25s, box-shadow .25s, background .25s; position: relative; overflow: hidden; }
+.certcard:hover { border-color: var(--bm); background: var(--white); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(107,63,42,.09); }
+.cert-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 800; color: white; font-size: 22px; letter-spacing: -.04em; position: relative; }
+.cert-icon svg { width: 30px; height: 30px; }
+.cert-body { flex: 1; min-width: 0; }
+.cert-issuer { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: var(--br); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.cert-name { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 4px; letter-spacing: -.01em; }
+.cert-sub { font-size: 12px; font-weight: 300; color: var(--ink3); line-height: 1.5; }
+.cert-arrow { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--ink3); transition: all .25s; }
+.certcard:hover .cert-arrow { border-color: var(--br); background: var(--br); color: white; transform: rotate(-45deg); }
+
+#contact { background: var(--br); }
+#contact .ey { color: rgba(255,255,255,.4); }
+#contact .ey-n { color: rgba(255,255,255,.4); }
+#contact .ey::after { background: rgba(255,255,255,.15); }
+.ch { font-size: clamp(32px,5vw,60px); font-weight: 800; line-height: 1.05; letter-spacing: -.03em; color: var(--white); margin-bottom: 16px; }
+.ch em { font-style: normal; opacity: .6; }
+.csub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.6); margin-bottom: 36px; }
+.csp { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+.bw { display: inline-flex; align-items: center; gap: 10px; background: var(--white); color: var(--br); border-radius: 10px; padding: 13px 26px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all .2s; }
+.bw:hover { background: var(--off); transform: translateY(-2px); }
+.cil { display: flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: rgba(255,255,255,.45); margin-bottom: 8px; }
+.civ { color: rgba(255,255,255,.8); }
+footer { padding: 20px 48px; background: var(--ink); display: flex; align-items: center; justify-content: space-between; }
+.fl { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.3); }
+.fl span { color: rgba(255,255,255,.5); }
+.fr { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,.18); }
+.rev { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+.rev.up { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; } .d3 { transition-delay: .24s; }
+@media(max-width:900px) {
+  .mocks-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:720px) {
+  nav { padding: 0 20px; } #hero { padding: 60px 20px 48px; } .sec { padding: 60px 20px; }
+  .demo-banner { padding: 6px 16px; font-size: 9.5px; }
+  .pgrid { grid-template-columns: 1fr; } .ssplit { grid-template-columns: 1fr; gap: 32px; }
+  .playout { grid-template-columns: 1fr; gap: 28px; } .rgrid { grid-template-columns: 1fr; }
+  .nk { display: none; } footer { padding: 16px 20px; }
+  .lang-tog button { padding: 3px 9px; font-size: 10px; }
+  .sbig { position: static; }
+  .hwrap { grid-template-columns: 1fr; gap: 32px; }
+  .hvis { aspect-ratio: 5 / 4; max-width: 480px; }
+  .tgrid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .rcard-lbl { min-height: 0; }
+  .md-cards { grid-template-columns: 1fr; }
+  .ma-cards { grid-template-columns: 1fr; }
+  .ap-metrics { grid-template-columns: repeat(2, 1fr); }
+  .ap-pies { grid-template-columns: 1fr; }
+  .hco-segs { grid-template-columns: 1fr; }
+}
+@media(max-width:480px) {
+  .tgrid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"><div class="cur-d" id="cd"></div><div class="cur-r" id="cr"></div></div>
+<nav>
+  <span class="nl">Mason <span>·</span> Vu Duy Thong</span>
+  <div class="nr">
+    <a href="#platforms" class="nk" data-i18n="nav.solutions">Solutions</a>
+    <a href="#results" class="nk" data-i18n="nav.results">Results</a>
+    <a href="#contact" class="nk" data-i18n="nav.contact">Contact</a>
+    <div class="lang-tog" role="group" aria-label="Language">
+      <button id="lang-en" class="on" onclick="setLang('en')">EN</button>
+      <button id="lang-vi" onclick="setLang('vi')">VI</button>
+    </div>
+  </div>
+</nav>
+
+<div class="demo-banner">
+  <span class="demo-banner-dot"></span>
+  <span data-i18n-html="demo.banner"><strong>DEMO PORTFOLIO</strong> · For confidentiality, all interface mockups, brand names, branch names, KOL handles &amp; numeric data shown have been recreated &amp; anonymized. Contact me to see the real platforms.</span>
+</div>
+
+<section id="hero">
+  <div class="hbg" aria-hidden="true">Growth</div>
+  <div class="hwrap">
+    <div class="hc">
+      <div class="hbadge">
+        <span class="bd"></span>
+        <span data-i18n-html="hero.badge">Available for projects · F&amp;B &amp; Hospitality</span>
+      </div>
+      <p class="hpre" data-i18n="hero.pre">Growth Marketing × Vibe Coding</p>
+      <h1 class="hn" data-i18n-html="hero.name">
+        Vu Duy <em>Thong</em>.
+        <span class="alias">aka Mason · Ho Chi Minh City</span>
+      </h1>
+      <p class="htag" data-i18n-html="hero.tag">
+        I build <strong>marketing systems</strong> for F&amp;B &amp; Hospitality — where real ROAS is the hardest problem. IT background + nearly 3 years in the industry: I can code, I understand what marketers need, and I ship systems that actually get used.
+      </p>
+      <div class="hbot">
+        <div class="hpills">
+          <span class="pill" data-i18n-html="hero.pill1">
+            <svg class="pico-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Ho Chi Minh City
+          </span>
+          <span class="pill" data-i18n-html="hero.pill2">
+            <svg class="pico-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M4 21h16"/><rect x="9" y="13" width="6" height="8"/><circle cx="9" cy="8" r=".6" fill="currentColor" stroke="none"/><circle cx="15" cy="8" r=".6" fill="currentColor" stroke="none"/><circle cx="12" cy="11" r=".6" fill="currentColor" stroke="none"/></svg>
+            F&amp;B · Hospitality
+          </span>
+          <span class="pill" data-i18n-html="hero.pill3">
+            <svg class="pico-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+            IT + Marketing
+          </span>
+        </div>
+        <div class="sh"><div class="sline"></div><span data-i18n="hero.scroll">Scroll to explore</span></div>
+      </div>
+    </div>
+
+    <div class="hvis">
+      <div class="hvis-frame">
+        <div class="hvis-bar">
+          <span class="hvis-dot"></span><span class="hvis-dot"></span><span class="hvis-dot"></span>
+          <span class="hvis-url" id="hvisurl">kol-engine.mason.dev</span>
+        </div>
+
+        <div class="hvis-slide on" id="hslide-0">
+          <div class="hvis-tag" data-i18n="hvis.kol.tag">01 / KOL MEDIA ENGINE</div>
+          <div class="hvis-h" data-i18n="hvis.kol.h">Top KOLs by ROAS — this week</div>
+          <div class="kol-grid">
+            <div class="kol-row">
+              <div class="kol-av">LR</div>
+              <div><div class="kol-name">Lina R.</div><div class="kol-meta">@linaroams · 124K · TikTok</div></div>
+              <div class="kol-bar"><div class="kol-bar-fill" style="width:92%"></div></div>
+              <div class="kol-roas">5.4×</div>
+            </div>
+            <div class="kol-row">
+              <div class="kol-av" style="background:linear-gradient(135deg,#3d7a52,#1a1209)">MT</div>
+              <div><div class="kol-name">Maya T.</div><div class="kol-meta">@mayatravels · 89K · Instagram</div></div>
+              <div class="kol-bar"><div class="kol-bar-fill" style="width:78%"></div></div>
+              <div class="kol-roas">4.1×</div>
+            </div>
+            <div class="kol-row">
+              <div class="kol-av" style="background:linear-gradient(135deg,#c4896a,#4a3728)">JK</div>
+              <div><div class="kol-name">Jenny K.</div><div class="kol-meta">@jenkimstays · 210K · YouTube</div></div>
+              <div class="kol-bar"><div class="kol-bar-fill" style="width:64%"></div></div>
+              <div class="kol-roas">3.2×</div>
+            </div>
+            <div class="kol-row">
+              <div class="kol-av" style="background:linear-gradient(135deg,#9a8070,#6B3F2A)">AD</div>
+              <div><div class="kol-name">Anna D.</div><div class="kol-meta">@annadwell · 56K · TikTok</div></div>
+              <div class="kol-bar"><div class="kol-bar-fill" style="width:48%"></div></div>
+              <div class="kol-roas">2.6×</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hvis-slide" id="hslide-1">
+          <div class="hvis-tag" data-i18n="hvis.ads.tag">02 / ADS AUTOMATION</div>
+          <div class="hvis-h" data-i18n="hvis.ads.h">Live campaigns — real-time</div>
+          <div class="ads-metrics">
+            <div class="ads-stat"><div class="ads-stat-l">ROAS</div><div class="ads-stat-v">4.8×</div><div class="ads-stat-d">↑ 18%</div></div>
+            <div class="ads-stat"><div class="ads-stat-l">CPA</div><div class="ads-stat-v">$12</div><div class="ads-stat-d">↓ 22%</div></div>
+            <div class="ads-stat"><div class="ads-stat-l">Spend</div><div class="ads-stat-v">$2.4K</div><div class="ads-stat-d dn">↑ 8%</div></div>
+          </div>
+          <div class="ads-chart">
+            <div class="ads-chart-h">
+              <span class="ads-chart-t" data-i18n="hvis.ads.chart">ROAS by day</span>
+              <span class="ads-chart-l">7D · Meta + Google</span>
+            </div>
+            <svg class="ads-svg" viewBox="0 0 280 70" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="gradAds" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#6B3F2A" stop-opacity=".22"/>
+                  <stop offset="100%" stop-color="#6B3F2A" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 50 L40 42 L80 46 L120 32 L160 36 L200 22 L240 18 L280 12 L280 70 L0 70 Z" fill="url(#gradAds)"/>
+              <path d="M0 50 L40 42 L80 46 L120 32 L160 36 L200 22 L240 18 L280 12" fill="none" stroke="#6B3F2A" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="280" cy="12" r="3" fill="#6B3F2A"/>
+            </svg>
+          </div>
+          <div class="ads-alert">
+            <div class="ads-alert-i">!</div>
+            <div class="ads-alert-t" data-i18n-html="hvis.ads.alert"><strong>Detector 17:</strong> Ad #4823 CTR down 34% — early fatigue signal.</div>
+          </div>
+        </div>
+
+        <div class="hvis-slide" id="hslide-2">
+          <div class="hvis-tag" data-i18n="hvis.hid.tag">03 / HID — HOTEL INTELLIGENCE</div>
+          <div class="hvis-h" data-i18n="hvis.hid.h">Monthly performance — overview</div>
+          <div class="hid-top">
+            <div class="hid-card"><div class="hid-card-l" data-i18n="hvis.hid.adr">ADR</div><div class="hid-card-v">$84<em>.20</em></div><div class="hid-card-s" data-i18n="hvis.hid.adr.s">↑ 12% vs LM</div></div>
+            <div class="hid-card"><div class="hid-card-l" data-i18n="hvis.hid.occ">Occupancy</div><div class="hid-card-v">78<em>%</em></div><div class="hid-card-s" data-i18n="hvis.hid.occ.s">↑ 6 pts</div></div>
+          </div>
+          <div class="hid-countries">
+            <div class="hid-countries-h"><span data-i18n="hvis.hid.markets">Top markets — ADR</span><span>Q4 · 2025</span></div>
+            <div class="hid-c-row">
+              <div class="hid-flag" style="background:#dc2626"></div>
+              <span class="hid-c-name" data-i18n="hvis.hid.jp">Japan</span>
+              <div class="hid-c-bar"><div class="hid-c-bar-fill" style="width:88%"></div></div>
+              <span class="hid-c-val">$112</span>
+            </div>
+            <div class="hid-c-row">
+              <div class="hid-flag" style="background:linear-gradient(180deg,#374151 33%,#dc2626 33% 66%,#facc15 66%)"></div>
+              <span class="hid-c-name" data-i18n="hvis.hid.de">Germany</span>
+              <div class="hid-c-bar"><div class="hid-c-bar-fill" style="width:72%"></div></div>
+              <span class="hid-c-val">$96</span>
+            </div>
+            <div class="hid-c-row">
+              <div class="hid-flag" style="background:linear-gradient(90deg,#1e40af 33%,#fff 33% 66%,#dc2626 66%)"></div>
+              <span class="hid-c-name" data-i18n="hvis.hid.fr">France</span>
+              <div class="hid-c-bar"><div class="hid-c-bar-fill" style="width:58%"></div></div>
+              <span class="hid-c-val">$78</span>
+            </div>
+          </div>
+          <div class="hid-ai">
+            <div class="hid-ai-i">AI</div>
+            <div class="hid-ai-t" data-i18n-html="hvis.hid.ai"><strong>Suggestion:</strong> Push Google Ads to JP &amp; DE next month — +14 days lead time, highest ADR.</div>
+          </div>
+        </div>
+      </div>
+      <div class="hvis-dots">
+        <button class="hvis-d on" onclick="hSlide(0)" aria-label="KOL Engine"></button>
+        <button class="hvis-d" onclick="hSlide(1)" aria-label="Ads Platform"></button>
+        <button class="hvis-d" onclick="hSlide(2)" aria-label="HiD Platform"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pain" class="sec">
+  <div class="si">
+    <div class="ey rev"><span class="ey-n">01 —</span><span data-i18n="pain.ey">The F&amp;B &amp; Hospitality Pain</span></div>
+    <h2 class="ph rev" data-i18n-html="pain.ph">How much budget is enough? Which ads <em>actually bring guests?</em></h2>
+    <p class="pi rev d1" data-i18n="pain.pi">Hotel guests book via OTA. Restaurant guests walk in from nowhere. How do you know which KOL, which ad actually drives revenue — or just burns budget for reach?</p>
+    <div class="pgrid rev d2">
+      <div class="pc"><span class="pico">🏨</span><div class="ptit" data-i18n="pain.hotel.t">Hotel</div><div class="pbo" data-i18n="pain.hotel.b">Guests book via OTA — no way to trace which ad or KOL drove the booking. High cancel rate with no clear cause. Top source country? Still guessing.</div></div>
+      <div class="pc"><span class="pico">🍽️</span><div class="ptit" data-i18n="pain.rest.t">Restaurant</div><div class="pbo" data-i18n="pain.rest.b">Walk-in guests — unknown origin. Facebook or Google? Which KOL? No real ROAS measurement, every budget decision is gut feel.</div></div>
+      <div class="pc"><span class="pico">📊</span><div class="ptit" data-i18n="pain.team.t">Marketing Team</div><div class="pbo" data-i18n="pain.team.b">11-step manual KOL management. Excel reports take all day. No right tool — too expensive, too generic, doesn't fit real workflows.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="solution" class="sec">
+  <div class="si">
+    <div class="ey rev"><span class="ey-n">02 —</span><span data-i18n="solution.ey">It Can Be Measured</span></div>
+    <div class="ssplit">
+      <div><h2 class="sbig rev" data-i18n-html="solution.h">The problem isn't that it <em>can't</em> be done — no one's built it right.</h2></div>
+      <div>
+        <div class="sbody rev d1" data-i18n-html="solution.body">
+          <p>About 3 years ago, building a custom marketing system for F&amp;B &amp; Hospitality required hiring a dedicated engineering team — months of work and serious budget. Small marketing teams simply didn't have that option.</p>
+          <p><strong>Now it's different.</strong> AI compresses that technical gap to weeks. I've proven this by building 3 real platforms for the hospitality industry, with a 4-person marketing team.</p>
+        </div>
+        <div class="sdiv rev d2"></div>
+        <div class="slist rev d2">
+          <div class="sitem"><div class="schk">✓</div><div class="stxt" data-i18n-html="solution.list1"><strong>Offline Conversion API</strong> — connect OTA bookings back to Facebook/Google Ads for real ROAS, not estimated.</div></div>
+          <div class="sitem"><div class="schk">✓</div><div class="stxt" data-i18n-html="solution.list2"><strong>KOL tracking &amp; automated pipeline</strong> — unique link per KOL, know exactly which KOL drove how many bookings. Discovery → booking → publish follow-up: all automated.</div></div>
+          <div class="sitem"><div class="schk">✓</div><div class="stxt" data-i18n-html="solution.list3"><strong>AI budget advisor</strong> — reads internal data, recommends optimal budget allocation based on historical ROAS &amp; seasonality.</div></div>
+          <div class="sitem"><div class="schk">✓</div><div class="stxt" data-i18n-html="solution.list4"><strong>Materials ordering system</strong> — order creatives for ads based on win/lose angle data, not gut feel.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="platforms" class="sec">
+  <div class="si">
+    <div class="ey rev"><span class="ey-n">03 —</span><span data-i18n="platforms.ey">3 Platforms Built</span></div>
+    <div class="tabs rev">
+      <button class="tab on" id="tkol" onclick="sT('kol')" data-i18n="platforms.tab.kol">🤝 KOL Engine</button>
+      <button class="tab" id="tads" onclick="sT('ads')" data-i18n="platforms.tab.ads">📈 Ads Platform</button>
+      <button class="tab" id="thid" onclick="sT('hid')" data-i18n="platforms.tab.hid">🏨 HiD Platform</button>
+    </div>
+
+    <!-- ========== KOL PANEL ========== -->
+    <div class="pan on" id="pkol">
+      <div class="playout">
+        <div>
+          <div class="po" data-i18n="kol.before">BEFORE THE TOOL</div>
+          <div class="ptitle" data-i18n="kol.before.t">11 manual steps per KOL</div>
+          <div class="psteps">
+            <div class="psteps-t" data-i18n="kol.before.h">Old workflow — a full day per KOL</div>
+            <div class="pstep"><span class="psn">01</span><span class="xout" data-i18n="kol.s1">Open TikTok / Instagram / YouTube to find KOLs manually</span></div>
+            <div class="pstep"><span class="psn">02</span><span class="xout" data-i18n="kol.s2">Copy URL, email, phone, ER, followers into Excel</span></div>
+            <div class="pstep"><span class="psn">03</span><span class="xout" data-i18n="kol.s3">Manually write outreach email to each KOL</span></div>
+            <div class="pstep"><span class="psn">04</span><span class="xout" data-i18n="kol.s4">Wait for reply, track via personal inbox</span></div>
+            <div class="pstep"><span class="psn">05</span><span class="xout" data-i18n="kol.s5">KOL agrees → contact branch to check schedule</span></div>
+            <div class="pstep"><span class="psn">06</span><span class="xout" data-i18n="kol.s6">Check room / table availability in separate PMS</span></div>
+            <div class="pstep"><span class="psn">07</span><span class="xout" data-i18n="kol.s7">Write and send confirmation email to KOL</span></div>
+            <div class="pstep"><span class="psn">08</span><span class="xout" data-i18n="kol.s8">Follow up to check if KOL has posted</span></div>
+            <div class="pstep"><span class="psn">09</span><span class="xout" data-i18n="kol.s9">Record results manually into Excel</span></div>
+            <div class="pstep"><span class="psn">10</span><span class="xout" data-i18n="kol.s10">No way to know which KOL actually drives revenue</span></div>
+            <div class="pstep"><span class="psn">11</span><span class="xout" data-i18n="kol.s11">Affiliate program? No idea where to start</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="po" data-i18n="kol.solu">KOL MEDIA ENGINE — SOLUTION</div>
+          <div class="ptitle" data-i18n="kol.solu.t">The entire pipeline, automated</div>
+          <div class="fcards">
+            <div class="fc"><div class="fct" data-i18n="kol.fc1.t">DISCOVERY + OUTREACH</div><div class="fch" data-i18n-html="kol.fc1.h">Auto KOL discovery &amp; outreach</div><div class="fcb" data-i18n="kol.fc1.b">AI drafts personalized outreach emails, sends automatically. Tracks reply rate by platform with a match score per KOL.</div></div>
+            <div class="fc"><div class="fct" data-i18n="kol.fc2.t">BOOKING INTEGRATION</div><div class="fch" data-i18n-html="kol.fc2.h">Auto check &amp; book rooms / tables</div><div class="fcb" data-i18n-html="kol.fc2.b">Direct PMS API. KOL agrees → system auto-checks availability &amp; sends confirmation. No manual email needed.</div></div>
+            <div class="fc"><div class="fct" data-i18n="kol.fc3.t">ROAS TRACKING + AFFILIATE</div><div class="fch" data-i18n="kol.fc3.h">Know exactly which KOL makes money</div><div class="fcb" data-i18n-html="kol.fc3.b">Each KOL gets a unique affiliate link &amp; promo code. Dashboard auto-calculates revenue, commission, tier &amp; ROAS per KOL.</div></div>
+          </div>
+          <div class="srow">
+            <div class="sbox"><div class="snum">320<em>+</em></div><div class="slbl" data-i18n="kol.stat1">KOLs managed</div></div>
+            <div class="sbox"><div class="snum">5</div><div class="slbl" data-i18n="kol.stat2">Branches / 4 countries</div></div>
+            <div class="sbox"><div class="snum">6</div><div class="slbl" data-i18n="kol.stat3">Languages</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mocks">
+        <div class="mocks-h">
+          <div class="mocks-h-l">
+            <span class="mocks-tag">03A / UI MOCKUPS</span>
+            <span class="mocks-title" data-i18n="mocks.kol.t">KOL Engine — interface walkthrough</span>
+          </div>
+          <span class="mocks-note" data-i18n-html="mocks.note"><span class="mocks-note-dot"></span>Recreated in HTML/CSS · data anonymized</span>
+        </div>
+        <div class="mocks-grid">
+
+          <!-- KOL Discovery -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">kol-engine.mason.dev/discovery</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-tag" data-i18n="kol.disc.tag">01 / DISCOVERY</div>
+              <div class="mock-h" data-i18n="kol.disc.h">KOL Discovery</div>
+              <div class="md-search-row">
+                <div class="md-search-input">travel</div>
+                <button class="md-search-btn" data-i18n="kol.disc.btn">SEARCH</button>
+              </div>
+              <div class="md-checks">
+                <span class="md-check"><span class="md-check-box">✓</span>Instagram</span>
+                <span class="md-check"><span class="md-check-box">✓</span>TikTok</span>
+                <span class="md-check"><span class="md-check-box">✓</span>YouTube</span>
+                <span style="margin-left:auto; font-family:'DM Mono',monospace; font-size:9px; color:var(--ink3)" data-i18n="kol.disc.max">Max: 30</span>
+              </div>
+              <div class="md-filters">
+                <div class="md-filter"><div class="md-filter-l" data-i18n="kol.disc.f1">Min Followers</div><div class="md-filter-v" data-i18n="kol.disc.nomin">No min</div></div>
+                <div class="md-filter"><div class="md-filter-l" data-i18n="kol.disc.f2">Max Followers</div><div class="md-filter-v" data-i18n="kol.disc.nomin">No max</div></div>
+                <div class="md-filter"><div class="md-filter-l" data-i18n="kol.disc.f3">Min Score</div><div class="md-filter-v" data-i18n="kol.disc.nomin">No min</div></div>
+                <div class="md-filter"><div class="md-filter-l" data-i18n="kol.disc.f4">Min ER</div><div class="md-filter-v" data-i18n="kol.disc.nomin">No min</div></div>
+              </div>
+              <div class="md-section">YouTube <span class="md-section-pill" data-i18n="kol.disc.results">30 results</span></div>
+              <div class="md-cards">
+                <div class="md-card">
+                  <div class="md-card-h">
+                    <div class="md-card-av">TR</div>
+                    <div><div class="md-card-n">Tardy Travel</div><div class="md-card-h2">@tardytravel</div></div>
+                  </div>
+                  <div class="md-card-stats">112K · 11.8% <span class="md-card-score">80</span></div>
+                </div>
+                <div class="md-card">
+                  <div class="md-card-h">
+                    <div class="md-card-av" style="background:linear-gradient(135deg,#3d7a52,#1a1209)">TB</div>
+                    <div><div class="md-card-n">Travel Beans</div><div class="md-card-h2">@travelbeans</div></div>
+                  </div>
+                  <div class="md-card-stats">380K · 10.6% <span class="md-card-score">80</span></div>
+                </div>
+                <div class="md-card">
+                  <div class="md-card-h">
+                    <div class="md-card-av" style="background:linear-gradient(135deg,#c4896a,#4a3728)">DB</div>
+                    <div><div class="md-card-n">DustBugs</div><div class="md-card-h2">@dustbugs</div></div>
+                  </div>
+                  <div class="md-card-stats">61K · 8.7% <span class="md-card-score">80</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KOL Insights -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">kol-engine.mason.dev/insights</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-tag" data-i18n="kol.ins.tag">02 / INSIGHTS</div>
+              <div class="mock-h" data-i18n="kol.ins.h">Performance — last 30 days</div>
+              <div class="mi-row1">
+                <div class="mi-stat"><div class="mi-l" data-i18n="kol.ins.reach">Total Reach</div><div class="mi-v">35.9K</div><div class="mi-d" data-i18n="kol.ins.reach.s">↑ engagement</div></div>
+                <div class="mi-stat"><div class="mi-l" data-i18n="kol.ins.er">Avg ER</div><div class="mi-v">4.65%</div><div class="mi-d" data-i18n="kol.ins.er.s">across all posts</div></div>
+                <div class="mi-stat"><div class="mi-l">Visit Rate</div><div class="mi-v">1.0</div><div class="mi-d" data-i18n="kol.ins.visit.s">% of clicks</div></div>
+              </div>
+              <div class="mi-row2">
+                <div class="mi-stat"><div class="mi-l">Revenue</div><div class="mi-v">$10.5K</div><div class="mi-d">↑ 8.2%</div></div>
+                <div class="mi-stat"><div class="mi-l">ROAS</div><div class="mi-v">3.4×</div><div class="mi-d">↑ 0.6×</div></div>
+                <div class="mi-stat"><div class="mi-l">Clicks</div><div class="mi-v">19.5K</div><div class="mi-d">↑ 12%</div></div>
+              </div>
+              <div class="mi-chart-box">
+                <div class="mi-chart-h">
+                  <span data-i18n="kol.ins.chart">Revenue over time</span>
+                  <span>Apr 16 — May 15</span>
+                </div>
+                <div class="mi-chart-tabs">
+                  <span class="mi-chart-tab">Reach</span>
+                  <span class="mi-chart-tab on">Revenue</span>
+                  <span class="mi-chart-tab">Cost</span>
+                  <span class="mi-chart-tab">Day</span>
+                </div>
+                <svg class="mi-svg" viewBox="0 0 400 90" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="gradMi" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#6B3F2A" stop-opacity=".18"/>
+                      <stop offset="100%" stop-color="#6B3F2A" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 72 C20 70 30 60 50 55 C70 50 80 65 100 60 C120 55 140 30 160 28 C180 25 200 45 220 40 C240 35 260 18 280 22 C300 26 320 50 340 55 C360 60 380 70 400 75 L400 90 L0 90 Z" fill="url(#gradMi)"/>
+                  <path d="M0 72 C20 70 30 60 50 55 C70 50 80 65 100 60 C120 55 140 30 160 28 C180 25 200 45 220 40 C240 35 260 18 280 22 C300 26 320 50 340 55 C360 60 380 70 400 75" fill="none" stroke="#6B3F2A" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Affiliate Dashboard -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">aff.mason.dev/dashboard</span>
+            </div>
+            <div class="mock-body">
+              <div class="ma-nav">
+                <span class="ma-logo">AURELIA</span>
+                <span class="ma-nav-k on">Home</span>
+                <span class="ma-nav-k">Bookings</span>
+                <span class="ma-nav-k">Payouts</span>
+                <span class="ma-nav-k">My Code</span>
+                <span class="ma-nav-right">Mason · Sign out</span>
+              </div>
+              <div class="ma-greet" data-i18n="kol.aff.greet">Hi Mason 👋</div>
+              <div class="ma-sub" data-i18n="kol.aff.sub">Your affiliate dashboard. Amounts paid in each branch currency; USD shown for comparison.</div>
+              <div class="ma-cards">
+                <div class="ma-card">
+                  <div class="ma-l" data-i18n="kol.aff.tier">Current Tier</div>
+                  <div class="ma-v">Silver</div>
+                  <div class="ma-s" data-i18n="kol.aff.tier.s">7% commission rate</div>
+                </div>
+                <div class="ma-card">
+                  <div class="ma-l" data-i18n="kol.aff.ytd">Cumulative YTD</div>
+                  <div class="ma-v">$842 <span>USD</span></div>
+                  <div class="ma-bar"><div class="ma-bar-fill" style="width:64%"></div></div>
+                  <div class="ma-s" data-i18n="kol.aff.ytd.s">$158 until Gold (8%)</div>
+                </div>
+                <div class="ma-card">
+                  <div class="ma-l" data-i18n="kol.aff.life">Lifetime Paid</div>
+                  <div class="ma-v">$2,140 <span>USD</span></div>
+                  <div class="ma-s" data-i18n="kol.aff.life.s">Pending: $310</div>
+                </div>
+              </div>
+              <div class="ma-panel">
+                <div class="ma-panel-h" data-i18n="kol.aff.pending">Pending commissions by currency</div>
+                <div class="ma-row"><span>VND · Branch A</span><span>4,720,000 ₫</span></div>
+                <div class="ma-row"><span>USD · Branch B</span><span>$120</span></div>
+                <div class="ma-row"><span>JPY · Branch C</span><span>¥18,400</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KOL Top by ROAS -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">kol-engine.mason.dev/leaderboard</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-tag" data-i18n="kol.lb.tag">04 / LEADERBOARD</div>
+              <div class="mock-h" data-i18n="kol.lb.h">Top KOLs by ROAS — this week</div>
+              <div class="kol-grid" style="margin-top:0">
+                <div class="kol-row">
+                  <div class="kol-av">LR</div>
+                  <div><div class="kol-name">Lina R.</div><div class="kol-meta">@linaroams · 124K · TikTok</div></div>
+                  <div class="kol-bar"><div class="kol-bar-fill" style="width:92%"></div></div>
+                  <div class="kol-roas">5.4×</div>
+                </div>
+                <div class="kol-row">
+                  <div class="kol-av" style="background:linear-gradient(135deg,#3d7a52,#1a1209)">MT</div>
+                  <div><div class="kol-name">Maya T.</div><div class="kol-meta">@mayatravels · 89K · Instagram</div></div>
+                  <div class="kol-bar"><div class="kol-bar-fill" style="width:78%"></div></div>
+                  <div class="kol-roas">4.1×</div>
+                </div>
+                <div class="kol-row">
+                  <div class="kol-av" style="background:linear-gradient(135deg,#c4896a,#4a3728)">JK</div>
+                  <div><div class="kol-name">Jenny K.</div><div class="kol-meta">@jenkimstays · 210K · YouTube</div></div>
+                  <div class="kol-bar"><div class="kol-bar-fill" style="width:64%"></div></div>
+                  <div class="kol-roas">3.2×</div>
+                </div>
+                <div class="kol-row">
+                  <div class="kol-av" style="background:linear-gradient(135deg,#9a8070,#6B3F2A)">AD</div>
+                  <div><div class="kol-name">Anna D.</div><div class="kol-meta">@annadwell · 56K · TikTok</div></div>
+                  <div class="kol-bar"><div class="kol-bar-fill" style="width:48%"></div></div>
+                  <div class="kol-roas">2.6×</div>
+                </div>
+                <div class="kol-row">
+                  <div class="kol-av" style="background:linear-gradient(135deg,#b87c5c,#3d2818)">SK</div>
+                  <div><div class="kol-name">Sam K.</div><div class="kol-meta">@samkwander · 42K · Instagram</div></div>
+                  <div class="kol-bar"><div class="kol-bar-fill" style="width:36%"></div></div>
+                  <div class="kol-roas">2.1×</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ADS PANEL ========== -->
+    <div class="pan" id="pads">
+      <div class="playout">
+        <div>
+          <div class="po" data-i18n="ads.po">CORE PROBLEM</div>
+          <div class="ptitle" data-i18n-html="ads.pt">Running F&amp;B ads with no real ROAS</div>
+          <div class="pbody" data-i18n-html="ads.pb">
+            <p>Starting from zero: no ads account, no measurement system, no strategy. Guests book via OTA — no conversion events firing back to Facebook or Google.</p>
+            <p><strong>Solution:</strong> Offline Conversion API. Every OTA booking matched back to Facebook / Google Ads for accurate ROAS — not estimated.</p>
+          </div>
+        </div>
+        <div>
+          <div class="po" data-i18n="ads.solu">ADS AUTOMATION PLATFORM</div>
+          <div class="ptitle" data-i18n="ads.solu.t">From fully manual to fully automated</div>
+          <div class="fcards">
+            <div class="fc"><div class="fct" data-i18n="ads.fc1.t">24 AUTO-DETECTORS</div><div class="fch" data-i18n="ads.fc1.h">Detect issues before you notice</div><div class="fcb" data-i18n-html="ads.fc1.b">24 detectors scan campaigns 24/7. Unusual CPC, CTR drop, ad fatigue, landing-page break — instant alerts &amp; auto-pause rules.</div></div>
+            <div class="fc"><div class="fct" data-i18n="ads.fc2.t">AI CONTENT BRIEF</div><div class="fch" data-i18n="ads.fc2.h">Content brief in 30 seconds</div><div class="fcb" data-i18n="ads.fc2.b">AI reads win / lose angle data, generates specific briefs for designers. No meetings, no long explanations.</div></div>
+            <div class="fc"><div class="fct" data-i18n="ads.fc3.t">DESIGN MATERIALS MANAGER</div><div class="fch" data-i18n="ads.fc3.h">Centralized creative asset library</div><div class="fcb" data-i18n="ads.fc3.b">Winning angles, keypoints, creative library. Canva API generates creatives from approved templates.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mocks">
+        <div class="mocks-h">
+          <div class="mocks-h-l">
+            <span class="mocks-tag">03B / UI MOCKUPS</span>
+            <span class="mocks-title" data-i18n="mocks.ads.t">Ads Platform — interface walkthrough</span>
+          </div>
+          <span class="mocks-note" data-i18n-html="mocks.note"><span class="mocks-note-dot"></span>Recreated in HTML/CSS · data anonymized</span>
+        </div>
+        <div class="mocks-grid">
+
+          <!-- ADS Performance -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">ads.mason.dev/performance</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-tag" data-i18n="ads.perf.tag">01 / ADS PERFORMANCE</div>
+              <div class="mock-h" data-i18n="ads.perf.h">Last 7 days · all branches · all platforms</div>
+              <div class="ap-metrics">
+                <div class="ap-stat"><div class="ap-l">Spend</div><div class="ap-v">$1,485</div><div class="ap-d dn">↓ 5.5%</div></div>
+                <div class="ap-stat"><div class="ap-l">Revenue</div><div class="ap-v">$4,408</div><div class="ap-d">↑ 54%</div></div>
+                <div class="ap-stat"><div class="ap-l">ROAS</div><div class="ap-v">2.97×</div><div class="ap-d">↑ 51.3%</div></div>
+                <div class="ap-stat"><div class="ap-l">CTR</div><div class="ap-v">3.4%</div><div class="ap-d">↑ 13.2%</div></div>
+                <div class="ap-stat"><div class="ap-l">CPA</div><div class="ap-v">$5.88</div><div class="ap-d dn">↑ 60.6%</div></div>
+              </div>
+              <div class="ap-pies">
+                <div class="ap-pie">
+                  <div class="ap-pie-t" data-i18n="ads.perf.bybranch.cost">By Branch (Cost)</div>
+                  <div class="ap-pie-content">
+                    <svg class="ap-pie-svg" viewBox="0 0 36 36">
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#6B3F2A" stroke-width="6" stroke-dasharray="35.5 64.5" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#c4896a" stroke-width="6" stroke-dasharray="22 78" stroke-dashoffset="-35.5" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#3d7a52" stroke-width="6" stroke-dasharray="18 82" stroke-dashoffset="-57.5" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#9a8070" stroke-width="6" stroke-dasharray="14 86" stroke-dashoffset="-75.5" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#1a1209" stroke-width="6" stroke-dasharray="10.5 89.5" stroke-dashoffset="-89.5" transform="rotate(-90 18 18)"/>
+                    </svg>
+                    <div class="ap-pie-legend">
+                      <div><i style="background:#6B3F2A"></i>Branch A<span>35%</span></div>
+                      <div><i style="background:#c4896a"></i>Branch B<span>22%</span></div>
+                      <div><i style="background:#3d7a52"></i>Branch C<span>18%</span></div>
+                      <div><i style="background:#9a8070"></i>Branch D<span>14%</span></div>
+                      <div><i style="background:#1a1209"></i>Branch E<span>11%</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ap-pie">
+                  <div class="ap-pie-t" data-i18n="ads.perf.bybranch.conv">By Branch (Conversions)</div>
+                  <div class="ap-pie-content">
+                    <svg class="ap-pie-svg" viewBox="0 0 36 36">
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#c4896a" stroke-width="6" stroke-dasharray="58 42" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#6B3F2A" stroke-width="6" stroke-dasharray="18 82" stroke-dashoffset="-58" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#3d7a52" stroke-width="6" stroke-dasharray="12 88" stroke-dashoffset="-76" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#9a8070" stroke-width="6" stroke-dasharray="8 92" stroke-dashoffset="-88" transform="rotate(-90 18 18)"/>
+                      <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#1a1209" stroke-width="6" stroke-dasharray="4 96" stroke-dashoffset="-96" transform="rotate(-90 18 18)"/>
+                    </svg>
+                    <div class="ap-pie-legend">
+                      <div><i style="background:#c4896a"></i>Branch B<span>58%</span></div>
+                      <div><i style="background:#6B3F2A"></i>Branch A<span>18%</span></div>
+                      <div><i style="background:#3d7a52"></i>Branch C<span>12%</span></div>
+                      <div><i style="background:#9a8070"></i>Branch D<span>8%</span></div>
+                      <div><i style="background:#1a1209"></i>Branch E<span>4%</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tactics -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">ads.mason.dev/tactics</span>
+            </div>
+            <div class="mock-body">
+              <div class="mt-toolbar">
+                <div class="mock-tag" data-i18n="ads.tac.tag">02 / TACTICS</div>
+                <span class="mt-toolbar-r" data-i18n="ads.tac.new">+ NEW TACTIC</span>
+              </div>
+              <div class="mock-h" data-i18n="ads.tac.h">Automation strategies</div>
+              <div class="mock-sub" data-i18n="ads.tac.sub">Preset bundles + custom rules. Runs daily at 17:00 UTC.</div>
+              <div class="mt-table">
+                <div class="mt-thead"><span data-i18n="ads.tac.col1">Name</span><span>Preset</span><span>Account</span><span data-i18n="ads.tac.col4">Active</span></div>
+                <div class="mt-row">
+                  <div><span class="mt-pill">AUTO</span><span class="mt-name">Branch B · MOF · Pause Today (losers)</span></div>
+                  <div class="mt-cell">Pause Losing Ads</div>
+                  <div class="mt-cell">Branch B</div>
+                  <div class="mt-toggle on"></div>
+                </div>
+                <div class="mt-row">
+                  <div><span class="mt-pill">AUTO</span><span class="mt-name">Branch B · MOF · Revive Recovered Ads</span></div>
+                  <div class="mt-cell">Revive — Ad level</div>
+                  <div class="mt-cell">Branch B</div>
+                  <div class="mt-toggle on"></div>
+                </div>
+                <div class="mt-row">
+                  <div><span class="mt-pill">AUTO</span><span class="mt-name">Branch B · MOF · SURF Scale Winners</span></div>
+                  <div class="mt-cell">Surf — Ad Set level</div>
+                  <div class="mt-cell">Branch B</div>
+                  <div class="mt-toggle on"></div>
+                </div>
+                <div class="mt-row">
+                  <div><span class="mt-pill">AUTO</span><span class="mt-name">Branch B · MOF · Stop Loss Ad Set</span></div>
+                  <div class="mt-cell">Stop Loss — Ad Set</div>
+                  <div class="mt-cell">Branch B</div>
+                  <div class="mt-toggle on"></div>
+                </div>
+                <div class="mt-row">
+                  <div><span class="mt-pill">AUTO</span><span class="mt-name">Branch B · TOF · Pause Today (losers)</span></div>
+                  <div class="mt-cell">Pause Losing Ads</div>
+                  <div class="mt-cell">Branch B</div>
+                  <div class="mt-toggle"></div>
+                </div>
+                <div class="mt-row">
+                  <div><span class="mt-pill">AUTO</span><span class="mt-name">Branch C · MOF · Pause Today (losers)</span></div>
+                  <div class="mt-cell">Pause Losing Ads</div>
+                  <div class="mt-cell">Branch C</div>
+                  <div class="mt-toggle on"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity Log -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">ads.mason.dev/activity</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-tag" data-i18n="ads.act.tag">03 / ACTIVITY LOG</div>
+              <div class="mock-h" data-i18n="ads.act.h">21 changes · selected period</div>
+              <div class="mal-tabs">
+                <span class="mal-tab on" data-i18n="ads.act.tab1">All</span>
+                <span class="mal-tab">Ad Mutation</span>
+                <span class="mal-tab">Ad Creation</span>
+                <span class="mal-tab">Automation</span>
+                <span class="mal-tab">Landing Page</span>
+                <span class="mal-tab">Tracking</span>
+              </div>
+              <div class="mal-chart-box">
+                <div class="mal-chart-h" data-i18n="ads.act.chart">Daily spend (VND) · change markers</div>
+                <svg class="mal-svg" viewBox="0 0 400 40" preserveAspectRatio="none">
+                  <path d="M0 30 C40 28 60 18 100 20 C140 22 160 8 200 6 C240 4 280 20 320 22 C360 24 380 28 400 26" fill="none" stroke="#6B3F2A" stroke-width="1.4" stroke-linejoin="round"/>
+                  <circle cx="100" cy="20" r="3" fill="#3d7a52"/>
+                  <circle cx="200" cy="6" r="3" fill="#3d7a52"/>
+                  <circle cx="320" cy="22" r="3" fill="#c0392b"/>
+                </svg>
+              </div>
+              <div class="mal-entries">
+                <div class="mal-entry">
+                  <div class="mal-badges">
+                    <span class="mal-badge auto">AUTO</span>
+                    <span class="mal-badge cre">Ad Creation</span>
+                    <span class="mal-badge loc">DE</span>
+                    <span class="mal-badge loc">Branch B</span>
+                    <span class="mal-badge meta">META</span>
+                    <span class="mal-time">1d ago</span>
+                  </div>
+                  <div class="mal-t">Ad created: [Image] F German Dorm</div>
+                  <div class="mal-meta">creative_id 24784...07984 · landing solo DE</div>
+                </div>
+                <div class="mal-entry">
+                  <div class="mal-badges">
+                    <span class="mal-badge auto">AUTO</span>
+                    <span class="mal-badge cre">Ad Creation</span>
+                    <span class="mal-badge loc">EN</span>
+                    <span class="mal-badge loc">Branch C</span>
+                    <span class="mal-badge meta">META</span>
+                    <span class="mal-time">1d ago</span>
+                  </div>
+                  <div class="mal-t">Ad created: [Video] KOL — Venice M.</div>
+                  <div class="mal-meta">creative_id 14806...4150909 · sales landing solo ENG v2</div>
+                </div>
+                <div class="mal-entry">
+                  <div class="mal-badges">
+                    <span class="mal-badge auto">AUTO</span>
+                    <span class="mal-badge cre">Campaign</span>
+                    <span class="mal-badge loc">Branch B</span>
+                    <span class="mal-badge meta">META</span>
+                    <span class="mal-time">2d ago</span>
+                  </div>
+                  <div class="mal-t">Campaign created: Mason_BRB_[TOF] Sales Solo ENG v2_PH</div>
+                  <div class="mal-meta">objective OUTCOME_SALES · platform_campaign_id 1281...995</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Analyst Chat -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">ai-analyst.mason.dev</span>
+            </div>
+            <div class="mock-body">
+              <div class="mac-header">
+                <span class="mac-header-i">AI</span>
+                <span>AI Ads Analyst</span>
+                <span class="mac-header-r">AURELIA Group</span>
+              </div>
+              <div class="mac-chat">
+                <div class="mac-bubble user" data-i18n="ads.mac.user1">Which combos should we scale?</div>
+                <div class="mac-bubble bot" data-i18n-html="ads.mac.bot1">
+                  Need 4 things to pull the right data — pick from the list:<br>
+                  <strong>1. Branch</strong> — A, B, C, D, or E?<br>
+                  <strong>2. Country</strong> — TW, KR, JP, VN, HK…?<br>
+                  <strong>3. Platform</strong> — Meta, Google, or TikTok?<br>
+                  <strong>4. Audience / Funnel</strong> — Solo / Couple / Business
+                </div>
+                <div class="mac-bubble user" data-i18n="ads.mac.user2">Branch B · Japanese · Google · TOF</div>
+                <div class="mac-bubble bot" data-i18n-html="ads.mac.bot2">
+                  Ran <code>get_campaign_setup</code> · <code>get_ad_performance</code> · <code>get_country_intel</code>.<br><br>
+                  <strong>Nothing to scale yet — you're not spending.</strong> 0 active campaigns, ¥0 over Dec 1–Jan 16.<br><br>
+                  <strong>But the opportunity is real:</strong> JP is your <strong>#3 source market</strong> (185 bookings / 30d) at <strong>$112 ADR</strong> — your highest. 4 TEST angles already drafted (ANG-017, 021, 025, 028).<br><br>
+                  <strong>👉 Recommend:</strong> Launch Google TOF · ¥80,000 / 14 days · rotate 2 angles (017 + 025, both target Solo). Kill any angle below <strong>1.8× ROAS</strong> after 7 days. Want me to draft the campaign?
+                </div>
+              </div>
+              <div class="mac-input" data-i18n="ads.mac.input">Ask about your ad performance…</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== HID PANEL ========== -->
+    <div class="pan" id="phid">
+      <div class="playout">
+        <div>
+          <div class="po" data-i18n="hid.po">HOTEL INDUSTRY</div>
+          <div class="ptitle" data-i18n="hid.pt">Too much data, no idea where to look</div>
+          <div class="pbody" data-i18n-html="hid.pb">
+            <p>Want cancel rate by OTA — manually export from PMS. Want top source country — collect booking data, cross-reference holiday calendar and government visitor data. A full week's work.</p>
+            <p>Which country has the highest lead time? Which room type has the highest ADR? When to push Google? When to focus on OTA? All guesswork.</p>
+          </div>
+        </div>
+        <div>
+          <div class="po" data-i18n="hid.solu">HiD — HOTEL INTELLIGENCE DASHBOARD</div>
+          <div class="ptitle" data-i18n="hid.solu.t">1 place, everything you need</div>
+          <div class="fcards">
+            <div class="fc"><div class="fct" data-i18n="hid.fc1.t">OTA PERFORMANCE</div><div class="fch" data-i18n="hid.fc1.h">Cancel rate, ADR, RevPAR by OTA</div><div class="fcb" data-i18n="hid.fc1.b">Real-time dashboard connected to PMS. 1 screen — know which OTA performs well, which needs optimization.</div></div>
+            <div class="fc"><div class="fct" data-i18n="hid.fc2.t">MARKET INTELLIGENCE</div><div class="fch" data-i18n="hid.fc2.h">Country analysis — focus budget correctly</div><div class="fcb" data-i18n-html="hid.fc2.b">Auto cross-references booking data with holiday calendar &amp; visitor data. Identifies high lead time, high ADR, low cancel rate countries.</div></div>
+            <div class="fc"><div class="fct" data-i18n="hid.fc3.t">AI DECISION SUPPORT</div><div class="fch" data-i18n="hid.fc3.h">Ask AI, get evidence-based answers</div><div class="fcb" data-i18n="hid.fc3.b">"Push Google or OTA next month?" — AI reads internal data + seasonality and answers with specific numbers.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mocks">
+        <div class="mocks-h">
+          <div class="mocks-h-l">
+            <span class="mocks-tag">03C / UI MOCKUPS</span>
+            <span class="mocks-title" data-i18n="mocks.hid.t">HiD Platform — interface walkthrough</span>
+          </div>
+          <span class="mocks-note" data-i18n-html="mocks.note"><span class="mocks-note-dot"></span>Recreated in HTML/CSS · data anonymized</span>
+        </div>
+        <div class="mocks-grid">
+
+          <!-- Daily Brief -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">hid.mason.dev/daily-brief</span>
+            </div>
+            <div class="mock-body">
+              <div class="hd-tabs">
+                <span class="hd-tab on" data-i18n="hid.brief.all">All Branches</span>
+                <span class="hd-tab">Branch A</span>
+                <span class="hd-tab">Branch B</span>
+                <span class="hd-tab">Branch C</span>
+                <span class="hd-tab">Branch D</span>
+                <span class="hd-tab">Branch E</span>
+              </div>
+              <div class="mock-tag" data-i18n="hid.brief.tag">01 / DAILY BRIEF</div>
+              <div class="mock-h" data-i18n="hid.brief.h">Daily OCC% by branch</div>
+              <div class="hd-chart-box">
+                <div class="hd-legend">
+                  <span><i style="background:#6B3F2A"></i>Branch A</span>
+                  <span><i style="background:#c4896a"></i>Branch B</span>
+                  <span><i style="background:#d97706"></i>Branch C</span>
+                  <span><i style="background:#3d7a52"></i>Branch D</span>
+                  <span><i style="background:#4a3aab"></i>Branch E</span>
+                </div>
+                <svg class="hd-svg" viewBox="0 0 400 80" preserveAspectRatio="none">
+                  <line x1="0" y1="20" x2="400" y2="20" stroke="#ede5de" stroke-width=".5"/>
+                  <line x1="0" y1="40" x2="400" y2="40" stroke="#ede5de" stroke-width=".5"/>
+                  <line x1="0" y1="60" x2="400" y2="60" stroke="#ede5de" stroke-width=".5"/>
+                  <path d="M0 12 L40 18 L80 14 L120 22 L160 16 L200 25 L240 18 L280 14 L320 20 L360 16 L400 14" fill="none" stroke="#6B3F2A" stroke-width="1.4"/>
+                  <path d="M0 28 L40 22 L80 30 L120 26 L160 35 L200 28 L240 22 L280 30 L320 34 L360 28 L400 24" fill="none" stroke="#c4896a" stroke-width="1.4"/>
+                  <path d="M0 45 L40 50 L80 42 L120 56 L160 48 L200 55 L240 60 L280 52 L320 48 L360 56 L400 50" fill="none" stroke="#d97706" stroke-width="1.4"/>
+                  <path d="M0 22 L40 28 L80 25 L120 18 L160 26 L200 20 L240 28 L280 24 L320 30 L360 22 L400 18" fill="none" stroke="#3d7a52" stroke-width="1.4"/>
+                  <path d="M0 38 L40 42 L80 36 L120 44 L160 40 L200 48 L240 42 L280 38 L320 46 L360 40 L400 36" fill="none" stroke="#4a3aab" stroke-width="1.4"/>
+                </svg>
+              </div>
+              <div class="hd-table">
+                <div class="hd-thead"><span>Date</span><span>Branch</span><span>OCC%</span><span>Revenue</span><span>ADR</span><span>RevPAR</span></div>
+                <div class="hd-row"><span>05-02</span><span>Branch A</span><span class="g">99.26%</span><span>486,835</span><span>3,606</span><span>3,528</span></div>
+                <div class="hd-row"><span>05-03</span><span>Branch A</span><span class="g">94.07%</span><span>172,646</span><span>1,359</span><span>1,251</span></div>
+                <div class="hd-row"><span>05-04</span><span>Branch B</span><span class="g">88.20%</span><span>312,420</span><span>2,180</span><span>1,922</span></div>
+                <div class="hd-row"><span>05-05</span><span>Branch C</span><span class="r">62.10%</span><span>198,500</span><span>1,840</span><span>1,142</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel Mix Heatmap -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">hid.mason.dev/channel-mix</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-tag" data-i18n="hid.ch.tag">02 / OTA CHANNEL MIX</div>
+              <div class="mock-h" data-i18n="hid.ch.h">Cancellation rate by booking source</div>
+              <div class="mock-sub" data-i18n="hid.ch.sub">Last synced 15/05, 11:38</div>
+              <div class="hc-toolbar">
+                <span class="on" data-i18n="hid.ch.daily">Daily (7 days)</span><span data-i18n="hid.ch.weekly">Weekly</span><span data-i18n="hid.ch.monthly">Monthly</span>
+              </div>
+              <div class="hc-table">
+                <div class="hc-thead"><span>Channel</span><span>May 09</span><span>May 10</span><span>May 11</span><span>May 12</span><span>May 13</span><span>Share</span></div>
+                <div class="hc-row">
+                  <span class="hc-ch">Booking.com</span>
+                  <span class="hc-cell" style="background:#fbcfcf;color:#7a1818">28.6%</span>
+                  <span class="hc-cell" style="background:#f9b9b9;color:#7a1818">40.0%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">15.9%</span>
+                  <span class="hc-cell" style="background:#fbcfcf;color:#7a1818">30.8%</span>
+                  <span class="hc-cell" style="background:#f9b9b9;color:#7a1818">35.0%</span>
+                  <span class="hc-cell" style="background:var(--off)">24.2%</span>
+                </div>
+                <div class="hc-row">
+                  <span class="hc-ch">Agoda</span>
+                  <span class="hc-cell" style="background:#fbcfcf;color:#7a1818">30.4%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">0.0%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">19.2%</span>
+                  <span class="hc-cell" style="background:#fbcfcf;color:#7a1818">27.7%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">19.0%</span>
+                  <span class="hc-cell" style="background:var(--off)">13.2%</span>
+                </div>
+                <div class="hc-row">
+                  <span class="hc-ch">Ctrip</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">22.2%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">0.0%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">7.6%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">12.3%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">17.6%</span>
+                  <span class="hc-cell" style="background:var(--off)">12.5%</span>
+                </div>
+                <div class="hc-row">
+                  <span class="hc-ch">Hostelworld</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">20.5%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">16.6%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">12.5%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">6.6%</span>
+                  <span class="hc-cell" style="background:#fdecec;color:#a93f3f">26.8%</span>
+                  <span class="hc-cell" style="background:var(--off)">11.2%</span>
+                </div>
+                <div class="hc-row">
+                  <span class="hc-ch">Expedia</span>
+                  <span class="hc-cell" style="background:#fbcfcf;color:#7a1818">33.3%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">0.0%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">0.0%</span>
+                  <span class="hc-cell" style="background:#fbcfcf;color:#7a1818">37.5%</span>
+                  <span class="hc-cell" style="background:#fbcfcf;color:#7a1818">44.4%</span>
+                  <span class="hc-cell" style="background:var(--off)">2.1%</span>
+                </div>
+                <div class="hc-row">
+                  <span class="hc-ch">Klook</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">0.0%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">0.0%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">0.0%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">0.0%</span>
+                  <span class="hc-cell" style="background:#dff5e3;color:#1f5a30">0.0%</span>
+                  <span class="hc-cell" style="background:var(--off)">0.2%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Country / Market -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">hid.mason.dev/markets</span>
+            </div>
+            <div class="mock-body">
+              <div class="hd-tabs">
+                <span class="hd-tab on" data-i18n="hid.brief.all">All Branches</span>
+                <span class="hd-tab">Branch A</span>
+                <span class="hd-tab">Branch B</span>
+                <span class="hd-tab">Branch C</span>
+              </div>
+              <div class="mock-tag" data-i18n="hid.mkt.tag">03 / MARKET INTELLIGENCE</div>
+              <div class="mock-h" data-i18n="hid.mkt.h">Top 5 markets · most bookings · last 30 days</div>
+              <div class="hco-table">
+                <div class="hco-thead"><span>#</span><span>Country</span><span>Bookings</span><span>KOL</span><span>Paid Ads</span></div>
+                <div class="hco-row">
+                  <span class="hco-n">1</span>
+                  <span class="hco-c" data-i18n="hid.mkt.tw">🇹🇼 Taiwan</span>
+                  <span>299</span>
+                  <span class="hco-pill ok" data-i18n="hid.mkt.10kol">10 KOLs</span>
+                  <span class="hco-pill bad" data-i18n="hid.mkt.noads">No Ads</span>
+                </div>
+                <div class="hco-row">
+                  <span class="hco-n">2</span>
+                  <span class="hco-c" data-i18n="hid.mkt.us">🇺🇸 United States</span>
+                  <span>220</span>
+                  <span class="hco-pill bad" data-i18n="hid.mkt.nokol">No KOL</span>
+                  <span class="hco-pill bad" data-i18n="hid.mkt.noads">No Ads</span>
+                </div>
+                <div class="hco-row">
+                  <span class="hco-n">3</span>
+                  <span class="hco-c" data-i18n-html="hid.mkt.jp">🇯🇵 Japan <span style="font-size:7px;background:#3d7a52;color:white;padding:1px 5px;border-radius:8px;margin-left:4px;font-family:'DM Mono',monospace">GOV #1</span></span>
+                  <span>185</span>
+                  <span class="hco-pill ok" data-i18n="hid.mkt.13kol">13 KOLs</span>
+                  <span class="hco-pill bad" data-i18n="hid.mkt.noads">No Ads</span>
+                </div>
+                <div class="hco-row">
+                  <span class="hco-n">4</span>
+                  <span class="hco-c" data-i18n="hid.mkt.de">🇩🇪 Germany</span>
+                  <span>142</span>
+                  <span class="hco-pill ok" data-i18n="hid.mkt.6kol">6 KOLs</span>
+                  <span class="hco-pill ok" data-i18n="hid.mkt.active">Active</span>
+                </div>
+                <div class="hco-row">
+                  <span class="hco-n">5</span>
+                  <span class="hco-c" data-i18n="hid.mkt.fr">🇫🇷 France</span>
+                  <span>118</span>
+                  <span class="hco-pill bad" data-i18n="hid.mkt.nokol">No KOL</span>
+                  <span class="hco-pill ok" data-i18n="hid.mkt.active">Active</span>
+                </div>
+              </div>
+              <div class="hco-panel">
+                <div class="hco-panel-h" data-i18n-html="hid.mkt.seg.h">Guest segments <span>last 90 days</span></div>
+                <div class="hco-segs">
+                  <div class="hco-seg"><span class="hco-seg-l" data-i18n="hid.mkt.seg1">1 adult</span><span class="hco-seg-v">209</span><span class="hco-seg-pct">(70%)</span></div>
+                  <div class="hco-seg"><span class="hco-seg-l" data-i18n="hid.mkt.seg2">2 adults</span><span class="hco-seg-v">60</span><span class="hco-seg-pct">(20%)</span></div>
+                  <div class="hco-seg"><span class="hco-seg-l" data-i18n="hid.mkt.seg3">3 adults</span><span class="hco-seg-v">19</span><span class="hco-seg-pct">(6.5%)</span></div>
+                  <div class="hco-seg"><span class="hco-seg-l" data-i18n="hid.mkt.seg4">4 adults</span><span class="hco-seg-v">9</span><span class="hco-seg-pct">(3%)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HiD Assistant -->
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">hid.mason.dev/assistant</span>
+            </div>
+            <div class="mock-body">
+              <div class="hai-header">
+                <span class="hai-header-i">Hi</span>
+                <div>
+                  <div class="hai-header-t">HiD Assistant</div>
+                  <div class="hai-header-s" data-i18n="hid.assist.sub">All branches · powered by Claude</div>
+                </div>
+              </div>
+              <div class="hai-warn" data-i18n-html="hid.assist.warn"><strong>Phase 1:</strong> suggestions only. Phase 2 will be able to <strong>execute</strong> the suggested actions.</div>
+              <div class="hai-chat">
+                <div class="hai-user" data-i18n="hid.assist.user">How should we run the Singapore market — which room type, target audience?</div>
+                <div class="hai-bot" data-i18n-html="hid.assist.bot">
+                  <strong>Singapore · Branch A — go after Solo Travelers first.</strong><br>
+                  Read 90 days of bookings (n=104). The signal is clear:<br><br>
+                  <strong>🎯 Audience priority</strong>
+                  <ul>
+                    <li><strong>Solo Traveler — 63%</strong>. Even gender split, mid-range budget, lead time <strong>37.8 days</strong> → start ads <strong>5–6 weeks before peak weekends</strong>.</li>
+                    <li><strong>Couple — 24%</strong>. Pushes Double Ensuite ADR <strong>+18%</strong> — keep as upsell, not main angle.</li>
+                  </ul>
+                  <strong>🛏 Room mix:</strong> 70% inventory on Solo Dorm + Single Pod, 30% on Double Ensuite.<br>
+                  <strong>💡 Why now:</strong> SG is your 4th-highest ADR market but spend = $0. Test budget <strong>$400/wk Meta TOF</strong> against Solo angle for 14 days — I'll alert if CPA breaks $22.
+                </div>
+              </div>
+              <div class="hai-input" data-i18n="hid.assist.input">Ask about OCC, KPI, ads, KOL, alerts…</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results" class="sec">
+  <div class="si">
+    <div class="ey rev"><span class="ey-n">04 —</span><span data-i18n="results.ey">After the build — the workflow shifted</span></div>
+    <h2 class="ph rev" data-i18n-html="results.ph">Same team. Same budget. <em>Run completely differently.</em></h2>
+    <p class="pi rev d1" data-i18n="results.pi">The most important outcome isn't pretty numbers — it's the team being freed from manual work to focus on what truly differentiates.</p>
+
+    <div class="rgrid rev d2">
+      <div class="rcard">
+        <div class="rcard-tag">01 / KOL ENGINE</div>
+        <div class="rcard-big">×4<em>+</em></div>
+        <div class="rcard-lbl" data-i18n="results.r1.lbl">more KOL collaborations per quarter — without adding anyone to the team.</div>
+        <div class="rcard-shift">
+          <div class="rcard-row">
+            <span class="rcard-from" data-i18n="results.before">Before</span>
+            <span class="rcard-from-t" data-i18n="results.r1.before">1 marketer stuck in 11 manual steps, capped at a few dozen KOLs per quarter.</span>
+          </div>
+          <div class="rcard-row">
+            <span class="rcard-to" data-i18n="results.now">Now</span>
+            <span class="rcard-to-t" data-i18n-html="results.r1.now">Pipeline runs itself. <strong>Same team operates 320+ KOLs</strong> across 5 branches, 4 countries, 6 languages.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcard">
+        <div class="rcard-tag">02 / PAID ADS</div>
+        <div class="rcard-big">0</div>
+        <div class="rcard-lbl" data-i18n="results.r2.lbl">need for an "ads runner" — headcount budget shifts to content production.</div>
+        <div class="rcard-shift">
+          <div class="rcard-row">
+            <span class="rcard-from" data-i18n="results.before">Before</span>
+            <span class="rcard-from-t" data-i18n="results.r2.before">Full days reading numbers, tweaking bids, A/B testing minutiae, chasing metrics.</span>
+          </div>
+          <div class="rcard-row">
+            <span class="rcard-to" data-i18n="results.now">Now</span>
+            <span class="rcard-to-t" data-i18n-html="results.r2.now">Ask the chatbot: <strong>"Which angle wins? What USP? Who to target?"</strong> — data instantly. Team focuses on <strong>quality content production</strong> — the only real differentiator.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcard">
+        <div class="rcard-tag">03 / HiD PLATFORM</div>
+        <div class="rcard-big">0<em>h</em></div>
+        <div class="rcard-lbl" data-i18n="results.r3.lbl">hours manually entering data into Excel — all time redirected to decision-making.</div>
+        <div class="rcard-shift">
+          <div class="rcard-row">
+            <span class="rcard-from" data-i18n="results.before">Before</span>
+            <span class="rcard-from-t" data-i18n="results.r3.before">A full week cross-referencing booking, holiday, visitor data in Excel — by the time it's done, it's already late.</span>
+          </div>
+          <div class="rcard-row">
+            <span class="rcard-to" data-i18n="results.now">Now</span>
+            <span class="rcard-to-t" data-i18n-html="results.r3.now">Data flows real-time. Team focuses on <strong>budget decisions, competitor tracking, OTA price control</strong> — the work that actually drives revenue.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools" class="sec">
+  <div class="si">
+    <div class="ey rev"><span class="ey-n">05 —</span><span data-i18n="tools.ey">Tools I work with</span></div>
+    <p class="tintro rev d1" data-i18n-html="tools.intro"><strong>12 platforms</strong> I use to connect, measure, and build systems. Stack selected by: <strong>open APIs, fast deploy, AI-native.</strong></p>
+    <div class="tgrid rev d2">
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#1877F2">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14C17.18 2.1 15.95 2 14.65 2 11.94 2 10 3.66 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+        </div>
+        <div class="tcat">ADS</div>
+        <div class="tnm">Facebook Ads</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#fff;border:1px solid var(--line)">
+          <svg viewBox="0 0 24 24"><path d="M3 18.5a3.5 3.5 0 0 0 6.06 2.41l9.06-15.7a3.5 3.5 0 0 0-6.06-3.5l-9.06 15.7A3.5 3.5 0 0 0 3 18.5z" fill="#FBBC04"/><circle cx="6.5" cy="18.5" r="3.5" fill="#34A853"/><path d="M20.97 18.5a3.5 3.5 0 1 1-6.06 3.5l-4.53-7.85 3.03-5.25 7.06 12.2a3.5 3.5 0 0 1 .5-2.6z" fill="#4285F4"/></svg>
+        </div>
+        <div class="tcat">ADS</div>
+        <div class="tnm">Google Ads</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#000">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.86a8.16 8.16 0 0 0 4.77 1.52V6.93a4.85 4.85 0 0 1-1.84-.24z" fill="#FF0050"/><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-2.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05 6.33 6.33 0 0 0-3.56 11.5 6.34 6.34 0 0 0 9.86-5.18V8.86a8.16 8.16 0 0 0 4.77 1.52V7.93a4.85 4.85 0 0 1-1.84-1.24z" fill="#25F4EE" opacity=".9" transform="translate(-1.2 0)"/><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-2.95v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05 6.33 6.33 0 0 0-3.56 11.5 6.34 6.34 0 0 0 10.36-4.78V8.86a8.16 8.16 0 0 0 4.77 1.52V7.43a4.85 4.85 0 0 1-1.84-.74z" fill="white"/></svg>
+        </div>
+        <div class="tcat">ADS</div>
+        <div class="tnm">TikTok Ads</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#fff;border:1px solid var(--line)">
+          <svg viewBox="0 0 24 24"><rect x="14" y="3" width="6" height="18" rx="3" fill="#F9AB00"/><circle cx="7" cy="18" r="3" fill="#E37400"/><rect x="10.5" y="10" width="6" height="11" rx="3" fill="#E37400" opacity=".75"/></svg>
+        </div>
+        <div class="tcat">ANALYTICS</div>
+        <div class="tnm">GA4</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#D97757">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M5.2 18.6h2.4l1.1-3h5.4l1.1 3h2.6L13.5 4.8h-3L5.2 18.6zm5-6.8 1.4-3.8L13 11.8h-2.8z"/></svg>
+        </div>
+        <div class="tcat">AI</div>
+        <div class="tnm">Claude AI</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#6D00CC">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M3 4h3l2 10h.1l2-10h3l-1.5 16h-2.5L7.5 9.5h-.1L5.5 20H3V4zm14 0h2v16h-2V4z"/></svg>
+        </div>
+        <div class="tcat">AUTOMATION</div>
+        <div class="tnm">Make.com</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#FF6B00">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M6.5 18a4.5 4.5 0 0 1-.4-9 6 6 0 0 1 11.6 1.3 4 4 0 0 1-1.2 7.7H6.5z"/></svg>
+        </div>
+        <div class="tcat">PMS API</div>
+        <div class="tnm" data-i18n="tools.t.pms">PMS Integration</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#fff;border:1px solid var(--line)">
+          <svg viewBox="0 0 24 24"><path d="M13 2 3 14h8v8l10-12h-8V2z" fill="#3ECF8E"/></svg>
+        </div>
+        <div class="tcat">BACKEND</div>
+        <div class="tnm">Supabase</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:linear-gradient(135deg,#00C4CC,#7D2AE7)">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm2.5 13.5c-1.4 1-3.2.6-3.9-.9-.6-1.4 0-3.1 1.4-3.8 1.4-.7 3.1-.1 3.7 1.3.4.9.1 1.9-.6 2.6-.2.3-.4.6-.6.8z"/></svg>
+        </div>
+        <div class="tcat">DESIGN API</div>
+        <div class="tnm">Canva API</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#0F766E">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M5 3h11l3 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm2 8h10v1.6H7V11zm0 3.4h10V16H7v-1.6zm0 3.4h7v1.6H7v-1.6zM8 5v3h7V5H8z"/></svg>
+        </div>
+        <div class="tcat">OPERATIONS</div>
+        <div class="tnm">Order Management Platform</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#fff;border:1px solid var(--line)">
+          <svg viewBox="0 0 24 24"><path d="M8 2h4v8H8a4 4 0 1 1 0-8z" fill="#F24E1E"/><path d="M12 2h4a4 4 0 0 1 0 8h-4V2z" fill="#FF7262"/><path d="M12 10h4a4 4 0 0 1 0 8h-4v-8z" fill="#1ABCFE"/><path d="M8 18a4 4 0 1 0 4 4v-4H8z" fill="#0ACF83"/><path d="M8 10h4v8H8a4 4 0 0 1 0-8z" fill="#A259FF"/></svg>
+        </div>
+        <div class="tcat">DESIGN</div>
+        <div class="tnm">Figma</div>
+      </div>
+      <div class="tcard">
+        <div class="tlogo-box" style="background:#fff;border:1px solid var(--line)">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#3B7BBA"/><circle cx="12" cy="12" r="3.5" fill="#fff"/><circle cx="12" cy="12" r="1.5" fill="#3B7BBA"/></svg>
+        </div>
+        <div class="tcat">UX ANALYTICS</div>
+        <div class="tnm">Microsoft Clarity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs" class="sec">
+  <div class="si">
+    <div class="ey rev"><span class="ey-n">06 —</span><span data-i18n="certs.ey">Verified Credentials</span></div>
+    <div class="certs-grid">
+
+      <a href="https://skillshop.credential.net/59c6af4f-49a6-42ef-b9b0-403d7c9a93d8#acc.KxClyIwO" target="_blank" rel="noopener" class="certcard rev d1">
+        <div class="cert-icon" style="background:#fff;border:1px solid var(--line)">
+          <svg viewBox="0 0 24 24"><path d="M3 18.5a3.5 3.5 0 0 0 6.06 2.41l9.06-15.7a3.5 3.5 0 0 0-6.06-3.5l-9.06 15.7A3.5 3.5 0 0 0 3 18.5z" fill="#FBBC04"/><circle cx="6.5" cy="18.5" r="3.5" fill="#34A853"/><path d="M20.97 18.5a3.5 3.5 0 1 1-6.06 3.5l-4.53-7.85 3.03-5.25 7.06 12.2a3.5 3.5 0 0 1 .5-2.6z" fill="#4285F4"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Google Skillshop</div>
+          <div class="cert-name">Google Ads Certification</div>
+          <div class="cert-sub">Verified credential · Skillshop</div>
+        </div>
+        <div class="cert-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </div>
+      </a>
+
+      <a href="https://www.credly.com/badges/902c7cb8-c382-48e8-88d5-2c530ea83d7f" target="_blank" rel="noopener" class="certcard rev d2">
+        <div class="cert-icon" style="background:#FF6900">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4zm0 3.6 5 2.5v4.1c0 3.4-2.2 6.5-5 7.5-2.8-1-5-4.1-5-7.5V8.1l5-2.5z"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Credly</div>
+          <div class="cert-name">Verified Professional Badge</div>
+          <div class="cert-sub">Digital credential · Credly</div>
+        </div>
+        <div class="cert-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </div>
+      </a>
+
+      <a href="https://www.coursera.org/account/accomplishments/verify/4MDMRGFHNN9V" target="_blank" rel="noopener" class="certcard rev d1">
+        <div class="cert-icon" style="background:#0056D2">
+          <svg viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10" fill="white"/><path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0 3.5a4.5 4.5 0 0 1 4.45 5.2L14.7 11l-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.15 1.7A4.5 4.5 0 0 1 12 7.5z" fill="#0056D2"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Coursera</div>
+          <div class="cert-name">Course Certificate</div>
+          <div class="cert-sub" data-i18n="certs.c3.sub">Verified completion · Coursera</div>
+        </div>
+        <div class="cert-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </div>
+      </a>
+
+      <a href="https://www.coursera.org/account/accomplishments/specialization/J9FMVVCGRLWW" target="_blank" rel="noopener" class="certcard rev d2">
+        <div class="cert-icon" style="background:#0056D2">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2 2 7l10 5 10-5-10-5zm0 9L2 6v6l10 5 10-5V6l-10 5zm0 5L2 11v6l10 5 10-5v-6l-10 5z"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Coursera</div>
+          <div class="cert-name">Specialization Certificate</div>
+          <div class="cert-sub">Multi-course specialization · Coursera</div>
+        </div>
+        <div class="cert-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="sec">
+  <div class="si">
+    <div class="ey rev"><span class="ey-n">07 —</span><span data-i18n="contact.ey">Work Together</span></div>
+    <div class="csp rev">
+      <div>
+        <h2 class="ch" data-i18n-html="contact.h">Your team deserves <em>better systems.</em></h2>
+        <p class="csub" data-i18n="contact.sub">I'm ready to hear your challenge — marketing system, custom tool, or ads strategy from scratch. Want to see the real platforms (not the anonymized demo)? Just reach out.</p>
+        <a href="mailto:vvuduythong@gmail.com" class="bw" data-i18n-html="contact.btn"><span>Get in touch with Mason</span> →</a>
+      </div>
+      <div>
+        <div class="cil">📧&nbsp;<span class="civ">vvuduythong@gmail.com</span></div>
+        <div class="cil">📱&nbsp;<span class="civ">0362 167 934</span></div>
+        <div class="cil">📍&nbsp;<span class="civ" data-i18n="contact.loc">Ho Chi Minh City</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="fl">Mason <span>·</span> Vu Duy Thong</span>
+  <span class="fr">Growth Marketing × Vibe Coding · 2026</span>
+</footer>
+
+<script>
+const cd = document.getElementById('cd'), cr = document.getElementById('cr');
+let mx = -100, my = -100, rx = -100, ry = -100;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function loop() {
+  rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+  cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+  cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a, button, .sitem, .pc, .fc, .rcard, .tcard, .certcard, .mock').forEach(el => {
+  el.addEventListener('mouseenter', () => { cr.style.transform = 'translate(-50%,-50%) scale(1.6)'; cr.style.opacity = '.8'; });
+  el.addEventListener('mouseleave', () => { cr.style.transform = 'translate(-50%,-50%) scale(1)'; cr.style.opacity = '.5'; });
+});
+
+function sT(id) {
+  ['kol', 'ads', 'hid'].forEach(x => {
+    document.getElementById('t' + x).classList.remove('on');
+    document.getElementById('p' + x).classList.remove('on');
+  });
+  document.getElementById('t' + id).classList.add('on');
+  document.getElementById('p' + id).classList.add('on');
+}
+
+const hvisUrls = ['kol-engine.mason.dev', 'ads-platform.mason.dev', 'hid.mason.dev'];
+let hCur = 0, hTimer = null;
+function hSlide(i) {
+  document.querySelectorAll('.hvis-slide').forEach((s, idx) => s.classList.toggle('on', idx === i));
+  document.querySelectorAll('.hvis-d').forEach((d, idx) => d.classList.toggle('on', idx === i));
+  document.getElementById('hvisurl').textContent = hvisUrls[i];
+  hCur = i;
+  clearInterval(hTimer);
+  hTimer = setInterval(() => hSlide((hCur + 1) % 3), 4200);
+}
+hTimer = setInterval(() => hSlide((hCur + 1) % 3), 4200);
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+
+/* === i18n EN ↔ VI === */
+const I18N_VI = {
+  'nav.solutions': 'Giải pháp',
+  'nav.results': 'Kết quả',
+  'nav.contact': 'Liên hệ',
+  'demo.banner': '<strong>PORTFOLIO DEMO</strong> · Để bảo mật, toàn bộ giao diện, tên thương hiệu, tên chi nhánh, KOL handle &amp; số liệu hiển thị đều đã được tái dựng &amp; ẩn danh. Liên hệ tôi để xem nền tảng thật.',
+
+  'hero.badge': 'Đang nhận dự án · F&amp;B &amp; Khách sạn',
+  'hero.pre': 'Growth Marketing × Vibe Coding',
+  'hero.name': 'Vũ Duy <em>Thông</em>.<span class="alias">aka Mason · Hồ Chí Minh</span>',
+  'hero.tag': 'Tôi build <strong>hệ thống marketing</strong> cho ngành F&amp;B &amp; Khách sạn — nơi đo ROAS thật là bài toán khó nhất. Background IT + gần 3 năm trong ngành: tôi code được, hiểu marketer cần gì, và ship hệ thống được team dùng thật.',
+  'hero.pill1': 'Hồ Chí Minh',
+  'hero.pill2': 'F&amp;B · Khách sạn',
+  'hero.pill3': 'IT + Marketing',
+  'hero.scroll': 'Cuộn để xem',
+
+  'hvis.kol.tag': '01 / KOL MEDIA ENGINE',
+  'hvis.kol.h': 'Top KOL theo ROAS — tuần này',
+  'hvis.ads.tag': '02 / ADS AUTOMATION',
+  'hvis.ads.h': 'Chiến dịch đang chạy — real-time',
+  'hvis.ads.chart': 'ROAS theo ngày',
+  'hvis.ads.alert': '<strong>Detector 17:</strong> Ad #4823 CTR giảm 34% — dấu hiệu fatigue sớm.',
+  'hvis.hid.tag': '03 / HID — HOTEL INTELLIGENCE',
+  'hvis.hid.h': 'Hiệu quả tháng — tổng quan',
+  'hvis.hid.adr': 'ADR',
+  'hvis.hid.occ': 'Công suất',
+  'hvis.hid.occ.s': '↑ 6 điểm',
+  'hvis.hid.adr.s': '↑ 12% so tháng trước',
+  'hvis.hid.markets': 'Top thị trường — ADR',
+  'hvis.hid.jp': 'Nhật',
+  'hvis.hid.de': 'Đức',
+  'hvis.hid.fr': 'Pháp',
+  'hvis.hid.ai': '<strong>Gợi ý:</strong> Đẩy Google Ads vào JP &amp; DE tháng tới — lead time +14 ngày, ADR cao nhất.',
+
+  'pain.ey': 'Nỗi đau ngành F&amp;B &amp; Khách sạn',
+  'pain.ph': 'Bao nhiêu budget là đủ? Ad nào <em>thật sự kéo khách?</em>',
+  'pain.pi': 'Khách khách sạn book qua OTA. Khách nhà hàng walk-in chẳng biết từ đâu. Làm sao biết KOL nào, ad nào thật sự ra revenue — hay chỉ đốt budget cho "reach vô nghĩa?"?',
+  'pain.hotel.t': 'Khách sạn',
+  'pain.hotel.b': 'Khách book qua OTA — không lần được ad/KOL nào dẫn về booking. Cancel rate cao mà chẳng rõ lý do. Nguồn khách top? Vẫn đoán.',
+  'pain.rest.t': 'Nhà hàng',
+  'pain.rest.b': 'Khách walk-in — không rõ nguồn. Facebook hay Google? KOL nào? Không có ROAS thật, mỗi quyết định budget đều theo cảm tính.',
+  'pain.team.t': 'Marketing Team',
+  'pain.team.b': 'Quản lý KOL 11 bước thủ công. Báo cáo Excel mất cả ngày. Không có tool đúng — quá đắt, quá generic, không khớp workflow thật.',
+
+  'solution.ey': 'Đo được hết',
+  'solution.h': 'Vấn đề không phải <em>không làm được</em> — là chưa ai build đúng.',
+  'solution.body': '<p>Khoảng 3 năm trước, build hệ thống marketing custom cho F&amp;B &amp; Khách sạn phải thuê hẳn team kỹ thuật riêng — mất nhiều tháng và tốn cả đống budget. Team marketing nhỏ đơn giản là không có lựa chọn.</p><p><strong>Giờ thì khác.</strong> AI nén khoảng cách kỹ thuật đó còn vài tuần. Tôi đã chứng minh bằng việc build 3 nền tảng thật cho ngành Khách sạn, với một team marketing chỉ 4 người.</p>',
+  'solution.list1': '<strong>Offline Conversion API</strong> — kết nối booking OTA về Facebook/Google Ads để có ROAS thật, không phải ước lượng.',
+  'solution.list2': '<strong>KOL tracking &amp; pipeline tự động</strong> — link riêng từng KOL, biết chính xác KOL nào kéo về bao nhiêu booking. Discovery → booking → publish follow-up: tự động hết.',
+  'solution.list3': '<strong>AI tư vấn budget</strong> — đọc data nội bộ, gợi ý phân bổ budget tối ưu dựa trên ROAS lịch sử &amp; mùa vụ.',
+  'solution.list4': '<strong>Hệ thống đặt vật liệu</strong> — order creative cho ads dựa trên data win/lose angle, không cảm tính.',
+
+  'platforms.ey': '3 nền tảng đã build',
+  'platforms.tab.kol': '🤝 KOL Engine',
+  'platforms.tab.ads': '📈 Ads Platform',
+  'platforms.tab.hid': '🏨 HiD Platform',
+
+  'kol.before': 'TRƯỚC KHI CÓ TOOL',
+  'kol.before.t': '11 bước thủ công cho mỗi KOL',
+  'kol.before.h': 'Workflow cũ — cả ngày cho 1 KOL',
+  'kol.s1': 'Mở TikTok / Instagram / YouTube tìm KOL thủ công',
+  'kol.s2': 'Copy URL, email, phone, ER, followers vào Excel',
+  'kol.s3': 'Viết tay outreach email cho từng KOL',
+  'kol.s4': 'Đợi reply, track qua inbox cá nhân',
+  'kol.s5': 'KOL đồng ý → contact branch check lịch',
+  'kol.s6': 'Check phòng / bàn trống trong PMS riêng',
+  'kol.s7': 'Viết và gửi email confirm cho KOL',
+  'kol.s8': 'Follow up xem KOL đã post chưa',
+  'kol.s9': 'Ghi kết quả thủ công vào Excel',
+  'kol.s10': 'Không biết KOL nào thật sự kéo revenue',
+  'kol.s11': 'Affiliate program? Không biết bắt đầu từ đâu',
+  'kol.solu': 'KOL MEDIA ENGINE — GIẢI PHÁP',
+  'kol.solu.t': 'Toàn bộ pipeline, tự động',
+  'kol.fc1.t': 'DISCOVERY + OUTREACH',
+  'kol.fc1.h': 'Tự động tìm &amp; outreach KOL',
+  'kol.fc1.b': 'AI viết outreach email cá nhân hóa, gửi tự động. Track reply rate theo platform với match score riêng từng KOL.',
+  'kol.fc2.t': 'TÍCH HỢP BOOKING',
+  'kol.fc2.h': 'Auto check &amp; book phòng / bàn',
+  'kol.fc2.b': 'Direct PMS API. KOL đồng ý → hệ thống tự check trống &amp; gửi confirm. Không cần email tay.',
+  'kol.fc3.t': 'ROAS TRACKING + AFFILIATE',
+  'kol.fc3.h': 'Biết chính xác KOL nào ra tiền',
+  'kol.fc3.b': 'Mỗi KOL có affiliate link &amp; promo code riêng. Dashboard tự tính revenue, commission, tier &amp; ROAS theo từng KOL.',
+  'kol.stat1': 'KOL đang quản lý',
+  'kol.stat2': 'Chi nhánh / 4 quốc gia',
+  'kol.stat3': 'Ngôn ngữ',
+  'mocks.kol.t': 'KOL Engine — walkthrough giao diện',
+  'mocks.ads.t': 'Ads Platform — walkthrough giao diện',
+  'mocks.hid.t': 'HiD Platform — walkthrough giao diện',
+  'mocks.note': '<span class="mocks-note-dot"></span>Tái dựng bằng HTML/CSS · data đã ẩn danh',
+  'kol.disc.tag': '01 / DISCOVERY',
+  'kol.disc.h': 'KOL Discovery',
+  'kol.disc.btn': 'TÌM',
+  'kol.disc.max': 'Tối đa: 30',
+  'kol.disc.f1': 'Followers tối thiểu',
+  'kol.disc.f2': 'Followers tối đa',
+  'kol.disc.f3': 'Score tối thiểu',
+  'kol.disc.f4': 'ER tối thiểu',
+  'kol.disc.nomin': 'Không giới hạn',
+  'kol.disc.results': '30 kết quả',
+  'kol.ins.tag': '02 / INSIGHTS',
+  'kol.ins.h': 'Hiệu quả — 30 ngày qua',
+  'kol.ins.reach': 'Tổng Reach',
+  'kol.ins.reach.s': '↑ engagement',
+  'kol.ins.er': 'ER trung bình',
+  'kol.ins.er.s': 'tất cả posts',
+  'kol.ins.visit.s': '% click',
+  'kol.ins.chart': 'Revenue theo thời gian',
+  'kol.aff.greet': 'Chào Mason 👋',
+  'kol.aff.sub': 'Dashboard affiliate của bạn. Số tiền trả theo tiền tệ từng chi nhánh; USD để so sánh.',
+  'kol.aff.tier': 'Tier hiện tại',
+  'kol.aff.tier.s': '7% commission',
+  'kol.aff.ytd': 'Tích lũy YTD',
+  'kol.aff.ytd.s': 'Còn $158 lên Gold (8%)',
+  'kol.aff.life': 'Tổng đã trả',
+  'kol.aff.life.s': 'Pending: $310',
+  'kol.aff.pending': 'Commission chờ thanh toán theo tiền tệ',
+  'kol.lb.tag': '04 / BẢNG XẾP HẠNG',
+  'kol.lb.h': 'Top KOL theo ROAS — tuần này',
+
+  'ads.po': 'VẤN ĐỀ CỐT LÕI',
+  'ads.pt': 'Chạy ads F&amp;B mà không có ROAS thật',
+  'ads.pb': '<p>Bắt đầu từ con số 0: không account ads, không hệ thống đo, không strategy. Khách book qua OTA — không có conversion event nào bắn về Facebook hay Google.</p><p><strong>Giải pháp:</strong> Offline Conversion API. Mỗi booking OTA được match về Facebook / Google Ads để có ROAS chính xác — không ước lượng.</p>',
+  'ads.solu': 'NỀN TẢNG ADS AUTOMATION',
+  'ads.solu.t': 'Từ thủ công 100% sang tự động 100%',
+  'ads.fc1.t': '24 AUTO-DETECTORS',
+  'ads.fc1.h': 'Phát hiện vấn đề trước cả bạn',
+  'ads.fc1.b': '24 detector quét chiến dịch 24/7. CPC bất thường, CTR rớt, ad fatigue, landing page lỗi — báo ngay &amp; auto-pause theo rule.',
+  'ads.fc2.t': 'AI CONTENT BRIEF',
+  'ads.fc2.h': 'Brief content trong 30 giây',
+  'ads.fc2.b': 'AI đọc data win / lose angle, sinh brief cụ thể cho designer. Không họp, không giải thích dài dòng.',
+  'ads.fc3.t': 'DESIGN MATERIALS MANAGER',
+  'ads.fc3.h': 'Thư viện creative tập trung',
+  'ads.fc3.b': 'Winning angle, keypoint, creative library. Canva API gen creative từ template đã duyệt.',
+  'ads.perf.tag': '01 / ADS PERFORMANCE',
+  'ads.perf.h': '7 ngày qua · tất cả chi nhánh · tất cả platform',
+  'ads.perf.bybranch.cost': 'Theo Chi nhánh (Cost)',
+  'ads.perf.bybranch.conv': 'Theo Chi nhánh (Conversions)',
+  'ads.tac.tag': '02 / TACTICS',
+  'ads.tac.new': '+ TACTIC MỚI',
+  'ads.tac.h': 'Chiến lược automation',
+  'ads.tac.sub': 'Preset bundle + custom rule. Chạy mỗi ngày 17:00 UTC.',
+  'ads.tac.col1': 'Tên',
+  'ads.tac.col4': 'Active',
+  'ads.act.tag': '03 / ACTIVITY LOG',
+  'ads.act.h': '21 thay đổi · giai đoạn đã chọn',
+  'ads.act.tab1': 'Tất cả',
+  'ads.act.chart': 'Spend theo ngày (VND) · marker thay đổi',
+  'ads.mac.user1': 'Combo nào nên scale?',
+  'ads.mac.bot1': 'Tôi cần 4 thông tin để pull đúng data — chọn từ list:<br><strong>1. Chi nhánh</strong> — A, B, C, D, hay E?<br><strong>2. Quốc gia</strong> — TW, KR, JP, VN, HK…?<br><strong>3. Platform</strong> — Meta, Google, hay TikTok?<br><strong>4. Audience / Funnel</strong> — Solo / Couple / Business',
+  'ads.mac.user2': 'Branch B · Nhật · Google · TOF',
+  'ads.mac.bot2': 'Đã chạy <code>get_campaign_setup</code> · <code>get_ad_performance</code> · <code>get_country_intel</code>.<br><br><strong>Chưa có gì để scale — bạn chưa spend.</strong> 0 chiến dịch active, ¥0 trong giai đoạn 1/12–16/1.<br><br><strong>Nhưng cơ hội có thật:</strong> JP là <strong>nguồn khách #3</strong> (185 booking / 30 ngày) với <strong>ADR $112</strong> — cao nhất. 4 angle TEST đã draft sẵn (ANG-017, 021, 025, 028).<br><br><strong>👉 Đề xuất:</strong> Launch Google TOF · ¥80,000 / 14 ngày · luân phiên 2 angle (017 + 025, đều target Solo). Kill angle nào ROAS dưới <strong>1.8×</strong> sau 7 ngày. Bạn có muốn tôi draft chiến dịch luôn không?',
+  'ads.mac.input': 'Hỏi về hiệu quả ads của bạn…',
+
+  'hid.po': 'NGÀNH KHÁCH SẠN',
+  'hid.pt': 'Quá nhiều data, không biết nhìn vào đâu',
+  'hid.pb': '<p>Muốn cancel rate theo OTA — phải export tay từ PMS. Muốn top nguồn khách — gom data booking, đối chiếu lịch nghỉ lễ &amp; data visitor của chính phủ. Cả tuần làm việc.</p><p>Quốc gia nào lead time cao nhất? Room type nào ADR cao nhất? Khi nào đẩy Google? Khi nào focus OTA? Tất cả đều đoán.</p>',
+  'hid.solu': 'HiD — HOTEL INTELLIGENCE DASHBOARD',
+  'hid.solu.t': '1 chỗ, đầy đủ mọi thứ',
+  'hid.fc1.t': 'OTA PERFORMANCE',
+  'hid.fc1.h': 'Cancel rate, ADR, RevPAR theo OTA',
+  'hid.fc1.b': 'Dashboard real-time kết nối PMS. 1 màn hình — biết OTA nào tốt, OTA nào cần tối ưu.',
+  'hid.fc2.t': 'MARKET INTELLIGENCE',
+  'hid.fc2.h': 'Phân tích quốc gia — focus budget đúng',
+  'hid.fc2.b': 'Tự đối chiếu data booking với lịch nghỉ &amp; data visitor. Phát hiện quốc gia lead time cao, ADR cao, cancel rate thấp.',
+  'hid.fc3.t': 'AI DECISION SUPPORT',
+  'hid.fc3.h': 'Hỏi AI, có đáp án dựa trên data',
+  'hid.fc3.b': '"Đẩy Google hay OTA tháng tới?" — AI đọc data nội bộ + mùa vụ và trả lời bằng số cụ thể.',
+  'hid.brief.all': 'Tất cả Chi nhánh',
+  'hid.brief.tag': '01 / DAILY BRIEF',
+  'hid.brief.h': 'Công suất ngày theo chi nhánh',
+  'hid.ch.tag': '02 / OTA CHANNEL MIX',
+  'hid.ch.h': 'Tỷ lệ huỷ theo nguồn booking',
+  'hid.ch.sub': 'Đồng bộ lúc 15/05, 11:38',
+  'hid.ch.daily': 'Theo ngày (7 ngày)',
+  'hid.ch.weekly': 'Theo tuần',
+  'hid.ch.monthly': 'Theo tháng',
+  'hid.mkt.tag': '03 / MARKET INTELLIGENCE',
+  'hid.mkt.h': 'Top 5 thị trường · nhiều booking nhất · 30 ngày qua',
+  'hid.mkt.tw': '🇹🇼 Đài Loan',
+  'hid.mkt.us': '🇺🇸 Hoa Kỳ',
+  'hid.mkt.jp': '🇯🇵 Nhật Bản <span style="font-size:7px;background:#3d7a52;color:white;padding:1px 5px;border-radius:8px;margin-left:4px;font-family:\'DM Mono\',monospace">GOV #1</span>',
+  'hid.mkt.de': '🇩🇪 Đức',
+  'hid.mkt.fr': '🇫🇷 Pháp',
+  'hid.mkt.10kol': '10 KOL',
+  'hid.mkt.13kol': '13 KOL',
+  'hid.mkt.6kol': '6 KOL',
+  'hid.mkt.nokol': 'Chưa có KOL',
+  'hid.mkt.noads': 'Chưa chạy Ads',
+  'hid.mkt.active': 'Đang chạy',
+  'hid.mkt.seg.h': 'Phân khúc khách <span>90 ngày qua</span>',
+  'hid.mkt.seg1': '1 người lớn',
+  'hid.mkt.seg2': '2 người lớn',
+  'hid.mkt.seg3': '3 người lớn',
+  'hid.mkt.seg4': '4 người lớn',
+  'hid.assist.sub': 'Tất cả chi nhánh · powered by Claude',
+  'hid.assist.warn': '<strong>Phase 1:</strong> chỉ gợi ý. Phase 2 sẽ có thể <strong>thực thi</strong> hành động đề xuất.',
+  'hid.assist.user': 'Nên chạy thị trường Singapore thế nào — room type, target audience nào?',
+  'hid.assist.bot': '<strong>Singapore · Branch A — đánh Solo Traveler trước.</strong><br>Đọc 90 ngày booking (n=104). Tín hiệu rõ:<br><br><strong>🎯 Audience priority</strong><ul><li><strong>Solo Traveler — 63%</strong>. Tỷ lệ giới đều, budget tầm trung, lead time <strong>37.8 ngày</strong> → bắt đầu chạy ads <strong>5–6 tuần trước peak weekend</strong>.</li><li><strong>Couple — 24%</strong>. Đẩy ADR Double Ensuite <strong>+18%</strong> — giữ làm upsell, không phải angle chính.</li></ul><strong>🛏 Room mix:</strong> 70% inventory cho Solo Dorm + Single Pod, 30% cho Double Ensuite.<br><strong>💡 Tại sao bây giờ:</strong> SG là thị trường ADR cao thứ 4 nhưng spend = $0. Test budget <strong>$400/tuần Meta TOF</strong> với Solo angle trong 14 ngày — tôi sẽ alert nếu CPA vượt $22.',
+  'hid.assist.input': 'Hỏi về OCC, KPI, ads, KOL, alerts…',
+
+  'results.ey': 'Sau khi build — workflow đã đổi',
+  'results.ph': 'Cùng team. Cùng budget. <em>Cách vận hành hoàn toàn khác.</em>',
+  'results.pi': 'Outcome quan trọng nhất không phải con số đẹp — là việc team được giải phóng khỏi tay chân để focus vào thứ thật sự khác biệt.',
+  'results.r1.lbl': 'collab KOL nhiều hơn mỗi quý — không cần tăng người.',
+  'results.before': 'Trước',
+  'results.now': 'Hiện nay',
+  'results.r1.before': '1 marketer kẹt trong 11 bước thủ công, capped ở vài chục KOL/quý.',
+  'results.r1.now': 'Pipeline tự chạy. <strong>Team như cũ vận hành 320+ KOL</strong> trên 5 chi nhánh, 4 quốc gia, 6 ngôn ngữ.',
+  'results.r2.lbl': 'cần "ads runner" — budget headcount chuyển sang sản xuất content.',
+  'results.r2.before': 'Cả ngày đọc số, chỉnh bid, A/B test vụn vặt, đuổi metric.',
+  'results.r2.now': 'Hỏi chatbot: <strong>"Angle nào win? USP gì? Target ai?"</strong> — data tức thời. Team focus vào <strong>sản xuất content chất lượng</strong> — thứ duy nhất tạo khác biệt.',
+  'results.r3.lbl': 'nhập tay vào Excel — toàn bộ thời gian chuyển sang ra quyết định.',
+  'results.r3.before': 'Cả tuần đối chiếu booking, nghỉ lễ, visitor data trên Excel — xong thì đã muộn.',
+  'results.r3.now': 'Data chảy real-time. Team focus vào <strong>quyết định budget, theo dõi competitor, kiểm soát giá OTA</strong> — thứ thật sự ra revenue.',
+
+  'tools.ey': 'Tool tôi dùng',
+  'tools.intro': '<strong>12 nền tảng</strong> tôi dùng để kết nối, đo lường, build hệ thống. Stack chọn theo: <strong>open API, deploy nhanh, AI-native.</strong>',
+  'tools.t.pms': 'Tích hợp PMS',
+
+  'certs.ey': 'Bằng cấp đã xác minh',
+  'certs.c3.sub': 'Hoàn tất đã xác minh · Coursera',
+
+  'contact.ey': 'Hợp tác',
+  'contact.h': 'Team bạn xứng đáng có <em>hệ thống tốt hơn.</em>',
+  'contact.sub': 'Tôi sẵn sàng nghe thử thách của bạn — hệ thống marketing, custom tool, hay strategy ads từ đầu. Muốn xem nền tảng thật (không phải demo ẩn danh)? Cứ liên hệ.',
+  'contact.btn': '<span>Liên hệ Mason</span> →',
+  'contact.loc': 'Hồ Chí Minh'
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.getElementById('lang-en').classList.toggle('on', lang === 'en');
+  document.getElementById('lang-vi').classList.toggle('on', lang === 'vi');
+  try { localStorage.setItem('mason.lang', lang); } catch (e) {}
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (el.dataset.enText === undefined) el.dataset.enText = el.textContent;
+    el.textContent = (lang === 'vi' && I18N_VI[k] !== undefined) ? I18N_VI[k] : el.dataset.enText;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.dataset.i18nHtml;
+    if (el.dataset.enHtml === undefined) el.dataset.enHtml = el.innerHTML;
+    el.innerHTML = (lang === 'vi' && I18N_VI[k] !== undefined) ? I18N_VI[k] : el.dataset.enHtml;
+  });
+}
+
+(function initLang() {
+  let saved = 'en';
+  try { saved = localStorage.getItem('mason.lang') || 'en'; } catch (e) {}
+  if (saved === 'vi') setLang('vi');
+})();
+</script>
+</body>
+</html>
